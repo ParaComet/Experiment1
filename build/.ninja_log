@@ -1,0 +1,6 @@
+# ninja log v6
+36	809	7653016026652177	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
+529	765	7647952785875944	Task1.exe	6b367ba0f3d0f50f
+917	1573	7653016035488474	liblib1.a	9f390dfb3ef822e2
+14	917	7653016026505217	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+1574	1940	7653016042090725	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e

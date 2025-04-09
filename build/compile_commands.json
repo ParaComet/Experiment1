@@ -1,0 +1,14 @@
+[
+{
+  "directory": "D:/Experiment/Task1/build",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++11 -o CMakeFiles\\Task1.dir\\src\\main.cpp.obj -c D:\\Experiment\\Task1\\src\\main.cpp",
+  "file": "D:\\Experiment\\Task1\\src\\main.cpp",
+  "output": "CMakeFiles\\Task1.dir\\src\\main.cpp.obj"
+},
+{
+  "directory": "D:/Experiment/Task1/build",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++11 -o CMakeFiles\\lib1.dir\\lib\\res.cpp.obj -c D:\\Experiment\\Task1\\lib\\res.cpp",
+  "file": "D:\\Experiment\\Task1\\lib\\res.cpp",
+  "output": "CMakeFiles\\lib1.dir\\lib\\res.cpp.obj"
+}
+]
