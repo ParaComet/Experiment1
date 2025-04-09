@@ -1,6 +1,17 @@
 # ninja log v6
-36	809	7653016026652177	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
+44	544	7658962764731761	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
 529	765	7647952785875944	Task1.exe	6b367ba0f3d0f50f
-917	1573	7653016035488474	liblib1.a	9f390dfb3ef822e2
-14	917	7653016026505217	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
-1574	1940	7653016042090725	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+780	1253	7658970690516627	liblib1.a	9f390dfb3ef822e2
+5	770	7658970682708605	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+1253	1621	7658970695233346	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+4	713	7658982574922803	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+715	1147	7658982582018757	liblib1.a	9f390dfb3ef822e2
+1147	1503	7658982586364620	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+4	702	7658987914007550	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+714	1137	7658987921112074	liblib1.a	9f390dfb3ef822e2
+1137	1496	7658987925347084	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+4	1071	7658991195545847	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+1072	1545	7658991206123149	liblib1.a	9f390dfb3ef822e2
+1545	1890	7658991210847354	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+4	506	7658993996616859	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
+507	855	7658994001648257	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e

@@ -1,39 +1,35 @@
 #ifndef RES_H
 #define RES_H
 
+#include <unordered_map>
 #include <vector>
-#include <memory>
 
 namespace TASK1 {
 
-    typedef std::vector<int> IntVector ;//int型动态数组
-    typedef std::vector<double> DoubleVector ;//double型动态数组
     typedef int Value ;//int型变量
-
+    typedef char Name ;
    
     
-    class ListNode {
-        public:
-            Value value;
-            std::shared_ptr<ListNode> next;
-            ListNode(Value value) : value(value), next(nullptr) {}
-            ~ListNode() {}
-        
+    class Node {
+    public:
+        Name name;
+        std::vector<std :: pair<Name, Value>> edges;
+        Node(Name name) : name(name){}
+        ~Node() {}
     };
+
 
     class ResNet {
     public:
         ResNet();
         virtual ~ResNet();
-
-        void add(const Value& value);
-        void printList() const;
-        int size() const;
+        void addNode(const Name& name);
+        void addEdge(const Name& src, const Name& dst, Value value);
+        void printGraph() const;
 
     private:
-        int size_;
-        std::shared_ptr<ListNode> head;
-        std::shared_ptr<ListNode> tail;  
+        std::vector<Node> nodes_;
+        std::unordered_map<Name, int> nameToIndex_;
     };
 
     // 声明为inline函数，避免头文件中出现重复定义
