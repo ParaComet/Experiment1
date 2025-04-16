@@ -90,6 +90,13 @@ build CMakeFiles/lib1.dir/lib/res.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
 
+build CMakeFiles/lib1.dir/lib/Dijk.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/Dijk.cpp || cmake_object_order_depends_target_lib1
+  DEP_FILE = CMakeFiles\lib1.dir\lib\Dijk.cpp.obj.d
+  FLAGS = -g -std=gnu++11
+  INCLUDES = -ID:/Experiment/Task1/include
+  OBJECT_DIR = CMakeFiles\lib1.dir
+  OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target lib1
@@ -98,7 +105,7 @@ build CMakeFiles/lib1.dir/lib/res.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$
 #############################################
 # Link the static library liblib1.a
 
-build liblib1.a: CXX_STATIC_LIBRARY_LINKER__lib1_Debug CMakeFiles/lib1.dir/lib/res.cpp.obj
+build liblib1.a: CXX_STATIC_LIBRARY_LINKER__lib1_Debug CMakeFiles/lib1.dir/lib/res.cpp.obj CMakeFiles/lib1.dir/lib/Dijk.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\lib1.dir
   POST_BUILD = cd .

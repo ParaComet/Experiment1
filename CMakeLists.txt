@@ -20,7 +20,11 @@ add_executable(Task1 ${SOURCE_DIR}/main.cpp)
 target_include_directories(Task1 PUBLIC ${INCLUDE_DIR})
 
 # 添加库文件
-add_library(lib1 ${LIB_DIR}/res.cpp)
+set(LIB1_SRC
+    ${LIB_DIR}/res.cpp
+    ${LIB_DIR}/Dijk.cpp
+)
+add_library(lib1 ${LIB1_SRC})
 
 # 添加库的包含目录
 target_include_directories(lib1 PUBLIC ${INCLUDE_DIR})
