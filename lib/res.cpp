@@ -53,4 +53,14 @@ void ResNet::printGraph() const{
     }
 }
 
+const std::vector<std::pair<Name, Value>>& ResNet::getEdges(const Name& node) const {
+    auto it = nameToIndex_.find(node);
+    if (it != nameToIndex_.end()) {
+        return nodes_[it->second].edges;
+    }
+    static std::vector<std::pair<Name, Value>> empty; // 返回空引用
+    return empty;
+}
+
+
 

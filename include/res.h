@@ -26,8 +26,9 @@ namespace TASK1 {
         void addNode(const Name& name);
         void addEdge(const Name& src, const Name& dst, Value value);
         void printGraph() const;
+        
+        const std::vector<std::pair<Name, Value>>& getEdges(const Name& node) const;
 
-    private:
         std::vector<Node> nodes_;
         std::unordered_map<Name, int> nameToIndex_;
     };

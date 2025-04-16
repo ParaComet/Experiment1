@@ -1,6 +1,73 @@
 #include "Dijk.h"
 #include <iostream>
+#include <algorithm>
 using namespace TASK1;
+
+// Dijkstra算法实现
+Dijkstra::Dijkstra(const ResNet& graph) : graph_(graph) {}
+
+void Dijkstra::shortestPath(const Name& start) {
+    // 初始化距离和前驱
+    distances_.clear();
+    predecessors_.clear();
+    
+    for (const auto& node : graph_.nodes_) {
+        distances_[node.name] = INF;
+    }
+    distances_[start] = 0;
+    
+    // 初始化优先队列
+    Heap minHeap;
+    for (const auto& node : graph_.nodes_) {
+        minHeap.insert(node.name, distances_[node.name]);
+    }
+    
+    // 主循环
+    while (!minHeap.isEmpty()) {
+        Name u = minHeap.extractMin();
+        
+        // 如果当前节点的距离是INF，说明剩余节点都不可达
+        if (distances_[u] == INF) break;
+        
+        // 遍历所有邻接节点
+        for (const auto& edge : graph_.getEdges(u)) {
+            Name v = edge.first;
+            Value weight = edge.second;
+            
+            Value alt = distances_[u] + weight;
+            if (alt < distances_[v]) {
+                distances_[v] = alt;
+                predecessors_[v] = u;
+                minHeap.decreaseKey(v, alt);
+            }
+        }
+    }
+}
+
+Value Dijkstra::getDistance(const Name& node) const {
+    auto it = distances_.find(node);
+    if (it != distances_.end()) {
+        return it->second;
+    }
+    return INF;
+}
+
+std::vector<Name> Dijkstra::getPath(const Name& node) const {
+    std::vector<Name> path;
+    if (distances_.find(node) == distances_.end() || distances_.at(node) == INF) {
+        return path; // 返回空路径
+    }
+    
+    Name current = node;
+    while (predecessors_.find(current) != predecessors_.end()) {
+        path.push_back(current);
+        current = predecessors_.at(current);
+    }
+    path.push_back(current); // 添加起点
+    
+    std::reverse(path.begin(), path.end());
+    return path;
+}
 
 Heap::Heap() {
     std::cout << "Heap created" << std::endl;
@@ -9,6 +76,7 @@ Heap::Heap() {
 Heap::~Heap() {
     std::cout << "Heap destroyed" << std::endl;
 }
+
 
 //判断是否为空
 bool Heap::isEmpty() const {

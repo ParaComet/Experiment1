@@ -4,14 +4,26 @@
 #include "res.h"
 #include <unordered_map>
 #include <vector>
+#include <limits>
 
 using namespace TASK1;
 
 namespace TASK1 {
-    void dijKstra(const ResNet& ResNet);
     
-    
+    const Value INF = std::numeric_limits<Value>::max();
+    class Dijkstra {
+    public:
+        Dijkstra(const ResNet& graph);
+        
+        void shortestPath(const Name& start);
+        Value getDistance(const Name& nod) const;
+        std::vector<Name> getPath(const Name &node) const;
 
+    private:
+        const ResNet& graph_;
+        std::unordered_map<Name,Value> distances_;
+        std::unordered_map<Name,Name> predecessors_;
+    };    
     class Heap{
     public:
         Heap();

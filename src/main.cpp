@@ -28,12 +28,44 @@ int main() {
         std::cout << minHeap.extractMin() << std::endl;
     }
 */
-   // 建立邻接表
+/*
+// 建立邻接表
     GetData(graph);
     
     // 打印邻接表
     std::cout << "Linked list contents: " << std::endl;
     graph.printGraph();
 
+
+*/   
+     // 1. 创建图
+     
+     graph.addNode('A');
+     graph.addNode('B');
+     graph.addNode('C');    
+     graph.addNode('D');
+     
+     graph.addEdge('A', 'B', 4);
+     graph.addEdge('A', 'C', 2);
+     graph.addEdge('B', 'D', 5);
+     graph.addEdge('C', 'B', 1);
+     graph.addEdge('C', 'D', 8);
+     
+     // 2. 运行Dijkstra算法
+     Dijkstra dijkstra(graph);
+     dijkstra.shortestPath('A');
+     
+     // 3. 输出结果
+     for (const auto& node : graph.nodes_) {
+         std::cout << "Distance to " << node.name << ": " 
+                   << dijkstra.getDistance(node.name) << std::endl;
+         
+         std::cout << "Path: ";
+         auto path = dijkstra.getPath(node.name);
+         for (const auto& n : path) {
+             std::cout << n << " ";
+         }
+         std::cout << std::endl;
+     }
     return 0;
 }
