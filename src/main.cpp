@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include "res.h"
 #include "Dijk.h"
@@ -45,7 +46,7 @@ int main() {
      graph.addNode('C');    
      graph.addNode('D');
      
-     graph.addEdge('A', 'B', 4);
+     graph.addEdge('A', 'B', 2);
      graph.addEdge('A', 'C', 2);
      graph.addEdge('B', 'D', 5);
      graph.addEdge('C', 'B', 1);
@@ -63,9 +64,22 @@ int main() {
          std::cout << "Path: ";
          auto path = dijkstra.getPath(node.name);
          for (const auto& n : path) {
-             std::cout << n << " ";
+            if(n!= path.back()) {
+                std::cout << n << "->";
+            }
+            else {
+                std::cout << n << std::endl;
+            }
          }
-         std::cout << std::endl;
      }
+
+     auto start = std::chrono::high_resolution_clock::now();
+     if(graph.CircleCheck('A', 'D')) {
+         std::cout << "Circle found" << std::endl;
+     };
+     auto end = std::chrono::high_resolution_clock::now();
+     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+     std::cout << "Time used: " << duration.count() << " microseconds" << std::endl;
+
     return 0;
 }

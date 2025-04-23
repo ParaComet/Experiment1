@@ -16,5 +16,11 @@
   "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++11 -o CMakeFiles\\lib1.dir\\lib\\Dijk.cpp.obj -c D:\\Experiment\\Task1\\lib\\Dijk.cpp",
   "file": "D:\\Experiment\\Task1\\lib\\Dijk.cpp",
   "output": "CMakeFiles\\lib1.dir\\lib\\Dijk.cpp.obj"
+},
+{
+  "directory": "D:/Experiment/Task1/build",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++11 -o CMakeFiles\\lib1.dir\\lib\\PathS.cpp.obj -c D:\\Experiment\\Task1\\lib\\PathS.cpp",
+  "file": "D:\\Experiment\\Task1\\lib\\PathS.cpp",
+  "output": "CMakeFiles\\lib1.dir\\lib\\PathS.cpp.obj"
 }
 ]

@@ -1,15 +1,7 @@
 # ninja log v6
-4	506	7658993996616859	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
+4	702	7671013826518959	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
 529	765	7647952785875944	Task1.exe	6b367ba0f3d0f50f
-1072	1545	7658991206123149	liblib1.a	9f390dfb3ef822e2
-4	1071	7658991195545847	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
-507	855	7658994001648257	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
-51	531	7664999143144183	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
-13	911	7664999142763540	CMakeFiles/lib1.dir/lib/Dijk.cpp.obj	5416fa9015b8bfda
-911	2039	7664999151745419	liblib1.a	629b3d136ef1d06d
-2039	3037	7664999163017233	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
-58	756	7665018019185591	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
-4	1120	7665018018628991	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
-45	1367	7665018019056599	CMakeFiles/lib1.dir/lib/Dijk.cpp.obj	5416fa9015b8bfda
-1367	1861	7665018032261217	liblib1.a	629b3d136ef1d06d
-1861	2221	7665018037206707	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+1467	2237	7671011624393602	liblib1.a	629b3d136ef1d06d
+11	1425	7671011609845321	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+703	1060	7671013833571836	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+42	1467	7671011610156443	CMakeFiles/lib1.dir/lib/Dijk.cpp.obj	5416fa9015b8bfda

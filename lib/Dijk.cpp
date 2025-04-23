@@ -89,7 +89,7 @@ void Heap::heapifyUp(int index) {
     while (index > 0) {
         int parentIndex = getParentIndex(index);
         
-        if(heap_[index] < heap_[parentIndex]) {
+        if (heap_[index] < heap_[parentIndex]) {
 
             //交换子节点和父节点
             HeapNode temp = heap_[index];
@@ -111,7 +111,7 @@ void Heap::heapifyUp(int index) {
 //下沉操作
 void Heap::heapifyDown(int index) {
     int size = heap_.size();
-    while(index < size) {
+    while (index < size) {
 
         //获取左右子节点的索引
         int leftChild = getLeftChildIndex(index);
@@ -119,15 +119,15 @@ void Heap::heapifyDown(int index) {
         int smallest = index;
 
         //找出左右子节点中最小的节点
-        if(leftChild < size && heap_[leftChild] < heap_[smallest]) {
+        if (leftChild < size && heap_[leftChild] < heap_[smallest]) {
             smallest = leftChild;
         }
 
-        if(rightChild < size && heap_[rightChild] < heap_[smallest]) {
+        if (rightChild < size && heap_[rightChild] < heap_[smallest]) {
             smallest = rightChild;
         }
 
-        if(smallest != index) {
+        if (smallest != index) {
             //交换子节点和父节点
             HeapNode temp = heap_[index];
             heap_[index] = heap_[smallest];
@@ -154,15 +154,15 @@ void Heap::insert(const Name& name, const Value& dist) {
     heapifyUp(heap_.size() - 1);
 }
 
-int Heap::getLeftChildIndex(int parentIndex) const{
+int Heap::getLeftChildIndex(int parentIndex) const {
     return 2 * parentIndex + 1;
 }
 
-int Heap::getRightChildIndex(int parentIndex) const{
+int Heap::getRightChildIndex(int parentIndex) const {
     return 2 * parentIndex + 2;
 }
 
-int Heap::getParentIndex(int childIndex) const{
+int Heap::getParentIndex(int childIndex) const {
     return (childIndex - 1) / 2;
 }
 
@@ -185,7 +185,7 @@ Name Heap::extractMin(){
 
     heap_.pop_back();
 
-    if(!isEmpty()) {
+    if (!isEmpty()) {
         //对堆顶元素进行下沉操作
         heapifyDown(0);
     }
@@ -194,14 +194,14 @@ Name Heap::extractMin(){
 }
 
 void Heap::decreaseKey(const Name& name, const Value& dist) {
-    if(nodeToIndex_.find(name) == nodeToIndex_.end()) {
+    if (nodeToIndex_.find(name) == nodeToIndex_.end()) {
         return;
     }
     
     int index = nodeToIndex_[name];
 
     //更新节点的距离
-    if(heap_[index].dist > dist) {
+    if (heap_[index].dist > dist) {
         heap_[index].dist = dist;
         //对节点进行上浮操作
         heapifyUp(index);

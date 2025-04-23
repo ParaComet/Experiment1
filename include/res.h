@@ -14,7 +14,8 @@ namespace TASK1 {
     public:
         Name name;
         std::vector<std :: pair<Name, Value>> edges;
-        Node(Name name) : name(name){}
+        int num_edges;
+        Node(Name name) : name(name) , num_edges(0) {}
         ~Node() {}
     };
 
@@ -23,7 +24,8 @@ namespace TASK1 {
     public:
         ResNet();
         virtual ~ResNet();
-        void addNode(const Name& name);
+        int addNode(const Name& name);
+        int CircleCheck(const Name& src, const Name& dst);
         void addEdge(const Name& src, const Name& dst, Value value);
         void printGraph() const;
         
@@ -36,6 +38,8 @@ namespace TASK1 {
     // 声明为inline函数，避免头文件中出现重复定义
 
 }
+
+
 
 #endif // RES_H
 

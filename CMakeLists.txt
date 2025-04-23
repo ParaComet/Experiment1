@@ -23,6 +23,7 @@ target_include_directories(Task1 PUBLIC ${INCLUDE_DIR})
 set(LIB1_SRC
     ${LIB_DIR}/res.cpp
     ${LIB_DIR}/Dijk.cpp
+    ${LIB_DIR}/PathS.cpp
 )
 add_library(lib1 ${LIB1_SRC})
 
