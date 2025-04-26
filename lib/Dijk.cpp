@@ -47,6 +47,7 @@ void Dijkstra::shortestPath(const Name& start) {
 }
 
 Value Dijkstra::getDistance(const Name& node) const {
+    // 获取节点的距离
     auto it = distances_.find(node);
     if (it != distances_.end()) {
         return it->second;

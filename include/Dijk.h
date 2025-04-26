@@ -19,8 +19,8 @@ namespace TASK1 {
         Dijkstra(const ResNet& graph);
         
         void shortestPath(const Name& start);
-        Value getDistance(const Name& node) const;
-        std::vector<Name> getPath(const Name &node) const;
+        Value getDistance(const Name& Djnode) const;
+        std::vector<Name> getPath(const Name &Djnode) const;
         int printPath(const Name& start, const Name& end);
 
     private:
@@ -35,10 +35,10 @@ namespace TASK1 {
     public:
         Heap();
         ~Heap();
-        void insert(const Name& node, const Value& dist);
+        void insert(const Name& Djnode, const Value& dist);
         Name extractMin();
         bool isEmpty() const;
-        void decreaseKey(const Name& node, const Value& dist);
+        void decreaseKey(const Name& Djnode, const Value& dist);
 
     private:
     // private member variables

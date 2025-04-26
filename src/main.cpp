@@ -86,7 +86,7 @@ int main() {
 
      PathS pathFinder(graph);
      pathFinder.searchPath();
-
+     pathFinder.printAllPaths();
     
     return 0;
 }
