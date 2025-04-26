@@ -9,15 +9,17 @@ using namespace TASK1;
 namespace TASK1 {
     class PathS {
     public:
-        PathS();
+        PathS(const ResNet& net);
         ~PathS();
-        void searchPath(const ResNet& net);
+        void searchPath();
         void dfsSearch(const ResNet& resNet, size_t currentIndex, 
                       std::vector<bool>& visited, 
                       std::vector<Name>& currentPath, 
-                      int currntWeight);  
-        void printPath(std::vector<Name> path);
+                      int currntWeight);
+        int printNodepath(const Name& start);  
     private:
+        //存储当前图的节点信息
+        const ResNet& resNet_;
         struct pathNode {
             Name name;
             std::vector<Name> pathToHere;
@@ -26,6 +28,7 @@ namespace TASK1 {
         };
         std::vector<pathNode> Node;
         std::unordered_map<Name, std::vector<pathNode>> graph;
+        void printPath(std::vector<pathNode> path);
     };
 }
 

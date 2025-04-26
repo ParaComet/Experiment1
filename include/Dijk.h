@@ -10,20 +10,27 @@ using namespace TASK1;
 
 namespace TASK1 {
     
+    //定义无穷大常数
     const Value INF = std::numeric_limits<Value>::max();
+    
+    //Dijkstra算法
     class Dijkstra {
     public:
         Dijkstra(const ResNet& graph);
         
         void shortestPath(const Name& start);
-        Value getDistance(const Name& nod) const;
+        Value getDistance(const Name& node) const;
         std::vector<Name> getPath(const Name &node) const;
+        int printPath(const Name& start, const Name& end);
 
     private:
         const ResNet& graph_;
         std::unordered_map<Name,Value> distances_;
         std::unordered_map<Name,Name> predecessors_;
     };    
+    
+
+    //堆的实现
     class Heap{
     public:
         Heap();
@@ -35,7 +42,7 @@ namespace TASK1 {
 
     private:
     // private member variables
-        int size;
+        int size_;
         
         //上浮操作
         void heapifyUp(int index);

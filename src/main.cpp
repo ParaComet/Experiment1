@@ -2,6 +2,7 @@
 #include <iostream>
 #include "res.h"
 #include "Dijk.h"
+#include "PathS.h"
 
 using namespace TASK1;
 
@@ -73,13 +74,19 @@ int main() {
          }
      }
 
-     auto start = std::chrono::high_resolution_clock::now();
+/*   auto start = std::chrono::high_resolution_clock::now();
      if(graph.CircleCheck('A', 'D')) {
          std::cout << "Circle found" << std::endl;
      };
      auto end = std::chrono::high_resolution_clock::now();
      auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
      std::cout << "Time used: " << duration.count() << " microseconds" << std::endl;
+*/
+     std::cout << std::endl;
 
+     PathS pathFinder(graph);
+     pathFinder.searchPath();
+
+    
     return 0;
 }

@@ -96,6 +96,7 @@ void ResNet::printGraph() const {
 }
 
 const std::vector<std::pair<Name, Value>>& ResNet::getEdges(const Name& node) const {
+    // 获取一个节点的所有邻接边
     auto it = nameToIndex_.find(node);
     if (it != nameToIndex_.end()) {
         return nodes_[it->second].edges;

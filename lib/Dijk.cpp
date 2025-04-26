@@ -18,6 +18,8 @@ void Dijkstra::shortestPath(const Name& start) {
     
     // 初始化优先队列
     Heap minHeap;
+
+    // 将所有节点加入优先队列
     for (const auto& node : graph_.nodes_) {
         minHeap.insert(node.name, distances_[node.name]);
     }
@@ -85,7 +87,7 @@ bool Heap::isEmpty() const {
 
 //上浮操作
 void Heap::heapifyUp(int index) {
-    //继承式更新避免内存开销过大
+    //迭代递归避免内存开销过大
     while (index > 0) {
         int parentIndex = getParentIndex(index);
         
@@ -183,6 +185,7 @@ Name Heap::extractMin(){
     }
     //交换堆顶元素和最后一个元素
 
+    //删除最后一个元素
     heap_.pop_back();
 
     if (!isEmpty()) {
@@ -201,8 +204,9 @@ void Heap::decreaseKey(const Name& name, const Value& dist) {
     int index = nodeToIndex_[name];
 
     //更新节点的距离
-    if (heap_[index].dist > dist) {
-        heap_[index].dist = dist;
+    if (heap_[index].dist > 0) {
+        Value oldDist = heap_[index].dist;
+        heap_[index].dist = dist*oldDist/(oldDist+dist);
         //对节点进行上浮操作
         heapifyUp(index);
     }
