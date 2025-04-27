@@ -111,6 +111,13 @@ build CMakeFiles/lib1.dir/lib/Console.cpp.obj: CXX_COMPILER__lib1_unscanned_Debu
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
 
+build CMakeFiles/lib1.dir/lib/Color.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/Color.cpp || cmake_object_order_depends_target_lib1
+  DEP_FILE = CMakeFiles\lib1.dir\lib\Color.cpp.obj.d
+  FLAGS = -g -std=gnu++11
+  INCLUDES = -ID:/Experiment/Task1/include
+  OBJECT_DIR = CMakeFiles\lib1.dir
+  OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target lib1
@@ -119,7 +126,7 @@ build CMakeFiles/lib1.dir/lib/Console.cpp.obj: CXX_COMPILER__lib1_unscanned_Debu
 #############################################
 # Link the static library liblib1.a
 
-build liblib1.a: CXX_STATIC_LIBRARY_LINKER__lib1_Debug CMakeFiles/lib1.dir/lib/res.cpp.obj CMakeFiles/lib1.dir/lib/Dijk.cpp.obj CMakeFiles/lib1.dir/lib/PathS.cpp.obj CMakeFiles/lib1.dir/lib/Console.cpp.obj
+build liblib1.a: CXX_STATIC_LIBRARY_LINKER__lib1_Debug CMakeFiles/lib1.dir/lib/res.cpp.obj CMakeFiles/lib1.dir/lib/Dijk.cpp.obj CMakeFiles/lib1.dir/lib/PathS.cpp.obj CMakeFiles/lib1.dir/lib/Console.cpp.obj CMakeFiles/lib1.dir/lib/Color.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\lib1.dir
   POST_BUILD = cd .

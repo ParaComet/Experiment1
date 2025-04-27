@@ -17,11 +17,12 @@ namespace TASK1 {
     class Dijkstra {
     public:
         Dijkstra(const ResNet& graph);
-        
-        void shortestPath(const Name& start);
-        Value getDistance(const Name& Djnode) const;
+        ~Dijkstra();
+
+        void shortestPath(const Name& start);//以start为起点计算最短路径
+        Value getDistance(const Name& Djnode) const;//获取start到Djnode的距离,start为上次shortestPath的起点
         std::vector<Name> getPath(const Name &Djnode) const;
-        int printPath(const Name& start, const Name& end);
+        int printPath(const Name& start, const Name& end);//打印从start到end的路径(未实现,已在console中打印)
 
     private:
         const ResNet& graph_;

@@ -19,8 +19,8 @@ namespace TASK1 {
                       std::vector<Name>& currentPath, 
                       Value currntWeight, size_t& starIndex);
         void printAllPaths();  
-        void printPath(const std::vector<Name>& path, Value weight);
-    private:
+        void printPath(const std::vector<Name>& path, Value weight, int type);
+        void printPathto(const Name& from, const Name& to, Value weight, int type);
         struct pathNode {
             Name name;
             std::vector<std::pair<std::vector<Name>, Value>> paths;

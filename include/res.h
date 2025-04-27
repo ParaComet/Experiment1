@@ -30,10 +30,12 @@ namespace TASK1 {
         int removeEdge(const Name& src, const Name& dst);
         int removeNode(const Name& name);
         void printGraph() const;
+        int printErrNodes() const;
         int findNode(const Name& name) const;
 
         const std::vector<std::pair<Name, Value>>& getEdges(const Name& node) const;
 
+        std::vector<Node> errnodes_;
         std::vector<Node> nodes_;
         std::unordered_map<Name, int> nameToIndex_;
     };

@@ -23,7 +23,9 @@ private:
     void findAllShortestPaths();  // 查找所有最短路径
     void deleteNode();  // 删除节点
     void deleteEdge();  // 删除边
-
+    void printPath();
+    void printCicle();
+private:
     ResNet& graph_;  // 图的引用
 };
 

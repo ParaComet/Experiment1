@@ -6,11 +6,11 @@
 using namespace TASK1;
 
 PathS::PathS(const ResNet& net) : resNet_(net) {
-    std::cout << "PathS constructor called" << std::endl;
+    //std::cout << "PathS constructor called" << std::endl;
 }
 
 PathS::~PathS() {
-    std::cout << "PathS destructor called" << std::endl;
+    //std::cout << "PathS destructor called" << std::endl;
 }
 
 void PathS::searchPath() {
@@ -42,7 +42,7 @@ void PathS::dfsSearch(const ResNet& resNet, size_t currentIndex,
     visited[currentIndex] = true;
     currentPath.push_back(resNet.nodes_[currentIndex].name);
     
-    // 记录当前路径
+    // 记录当前路径仅有节点大于二时为有效
     if (currentPath.size() > 1) {
         for(auto& node : Node_) {
             // 找到起点节点
@@ -69,12 +69,12 @@ void PathS::dfsSearch(const ResNet& resNet, size_t currentIndex,
     currentPath.pop_back();
 }
 
-void PathS::printPath(const std::vector<Name>& path, Value weight) {
+void PathS::printPath(const std::vector<Name>& path, Value weight, int type) {
     if (path.empty()) {
         std::cout << "No path found" << std::endl;
         return;
     }
-
+    // 打印路径
     for (size_t i = 0; i < path.size(); ++i) {
         if (i != 0) {
             std::cout << " -> ";
@@ -82,9 +82,13 @@ void PathS::printPath(const std::vector<Name>& path, Value weight) {
         std::cout << path[i];
     }
     // 打印路径权重
-    std::cout << " (Total weight: " << weight << ")" << std::endl;
-}
+    if (type == 0) {
+        std::cout << " (Total weight: " << weight << ")" << std::endl;
 
+    } else if (type == 1) {
+        std::cout << " -> ";
+    }// type ==1 为打印环路
+}
 
 void PathS::printAllPaths() {
     // 打印所有路径
@@ -96,9 +100,34 @@ void PathS::printAllPaths() {
             continue;
         }
         for(const auto& path : node.paths) {
-            printPath(path.first, path.second); 
+            printPath(path.first, path.second, 0); 
         }
         std::cout << std::endl;
     }
     return ;
+}
+
+void PathS::printPathto(const Name& from, const Name& to, Value weight, int type) {
+    // 打印从path到to的路径
+    bool found = false;
+    for (const auto& node : Node_) {
+        if (node.name == from) {
+            for(const auto& path : node.paths) {
+                if (path.first.back() == to) {
+                    printPath(path.first, path.second, type);
+                    if (type == 1) {
+                        std::cout << from << " (Total weight: " << path.second+weight << ")" <<std::endl;
+                    }
+                    found = true;
+                }
+            }
+            if (found) {
+                return;
+            }
+            std::cout << "No path found" << std::endl;
+            return;
+        }
+    }
+    std::cout << "Node " << from << " not found" << std::endl;
+    return;
 }

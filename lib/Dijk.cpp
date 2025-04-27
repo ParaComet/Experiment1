@@ -4,7 +4,16 @@
 using namespace TASK1;
 
 // Dijkstra算法实现
-Dijkstra::Dijkstra(const ResNet& graph) : graph_(graph) {}
+Dijkstra::Dijkstra(const ResNet& graph) : graph_(graph) {
+    distances_.clear();
+    predecessors_.clear();
+    //std::cout << "Dijkstra created" << std::endl;
+}
+
+Dijkstra::~Dijkstra() {
+    //std::cout << "Dijkstra destroyed" << std::endl<< std::endl;
+}
+
 
 void Dijkstra::shortestPath(const Name& start) {
     // 初始化距离和前驱
@@ -73,11 +82,11 @@ std::vector<Name> Dijkstra::getPath(const Name& node) const {
 }
 
 Heap::Heap() {
-    std::cout << "Heap created" << std::endl;
+    //std::cout << "Heap created" << std::endl;
 }
 
 Heap::~Heap() {
-    std::cout << "Heap destroyed" << std::endl;
+    //std::cout << "Heap destroyed" << std::endl;
 }
 
 

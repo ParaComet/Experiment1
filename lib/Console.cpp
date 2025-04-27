@@ -1,13 +1,17 @@
-#include "console.h"
+#include "Console.h"
+#include "PathS.h"
 #include <cctype>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <algorithm>
+#include "Color.h"
 
 using namespace TASK1;
 
-Console::Console(ResNet& graph) : graph_(graph) {}
+Console::Console(ResNet& graph) : graph_(graph) {
+    //std::cout << "Graph processing console initialized.\n";
+}
 
 void Console::start() {
     std::cout << "Graph Processing Console (type 'help' for commands)" << std::endl;
@@ -39,9 +43,11 @@ void Console::printHelp() const {
               << "  allpaths - Find all paths in the graph\n"
               << "  dijk - Find all shortest paths in the graph\n"
               << "  print - Print the graph structure\n"
-              << "  exit/quit - Exit the program\n"
               << "  dlnode - Delete a node from the graph\n"
-              << "  dledge - Delete an edge from the graph\n";
+              << "  dledge - Delete an edge from the graph\n"
+              << "  printpath - Print paths from start to end in the graph\n"
+              << "  printcicle - Print all cycles in the graph\n"
+              << "  exit/quit - Exit the program\n";
 }
 
 
@@ -64,6 +70,10 @@ void Console::processCommand(const std::string& cmd) {
         deleteNode();
     } else if (cmd == "dledge") {
         deleteEdge();
+    } else if (cmd == "printpath") {
+        printPath();
+    } else if (cmd == "printcicle") {
+        printCicle();
     } else {
         std::cout << "Unknown command. Type 'help' for available commands.\n";
     }
@@ -139,6 +149,10 @@ void Console::addEdge() {
                 std::cout << "Edge (" << src << ", " << dst << ") added successfully.\n";
             } else if (result == 2) {
                 std::cout << "Edge (" << src << ", " << dst << ") already exists.\n";
+            } else if (result == 1){
+                PathS pathFinder(graph_);
+                pathFinder.searchPath();
+                pathFinder.printPathto(dst, src, weight,1);// 1表示打印环路
             }
         } catch (const std::exception& e) {
             std::cout << "Error: " << e.what() << "\n";
@@ -254,6 +268,51 @@ void Console::deleteEdge() {
         std::cout << "Edge (" << src << ", " << dst << ") deleted successfully.\n";
     } else if (result == 1) {
         std::cout << "Edge (" << src << ", " << dst << ") does not exist.\n";
+    } else if (result == 2) {
+        std::cout << "errEdge (" << src << ", " << dst << ") deleted successfully.\n";
+    }
+    return;
+}
+
+void Console::printPath() {
+    // 验证节点是否存在
+    Name start, end;
+    std::cout << "Enter start and end nodes of path (e.g. A B): ";
+    std::cin >> start >> end;
+    std::cin.ignore();  // 清除输入缓冲区
+    
+    start = toupper(start);
+    end = toupper(end);
+    // 验证边是否存在
+    PathS pathFinder(graph_);
+    pathFinder.searchPath();
+
+    pathFinder.printPathto(start, end, 0,0);
+    std::cout << "\n";    
+}
+
+void Console::printCicle() {
+    // 验证节点是否存在
+    PathS pathFinder(graph_);
+    pathFinder.searchPath();
+    bool flag = false;
+    for (const auto& ernode : graph_.errnodes_) {
+        //遍历所有节点
+        if (!ernode.edges.empty()) {
+            flag = true;// 存在cycle
+            std::cout << "Node: " << ernode.name << " has cycles:\n";
+            //查找节点是否有环路
+            for (const auto& edge : ernode.edges) {
+                pathFinder.printPathto(edge.first, ernode.name, edge.second,1);
+            }
+            std::cout << "\n";
+        }
+    }
+
+    if (!flag) {
+        std::cout << "There is no cycle in the graph.\n";
+    } else {
+        std::cout << "All cycles have been printed.\n";
     }
     return;
 }
