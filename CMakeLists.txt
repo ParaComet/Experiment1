@@ -24,6 +24,7 @@ set(LIB1_SRC
     ${LIB_DIR}/res.cpp
     ${LIB_DIR}/Dijk.cpp
     ${LIB_DIR}/PathS.cpp
+    ${LIB_DIR}/Console.cpp
 )
 add_library(lib1 ${LIB1_SRC})
 

@@ -205,9 +205,8 @@ void Heap::decreaseKey(const Name& name, const Value& dist) {
     int index = nodeToIndex_[name];
 
     //更新节点的距离
-    if (heap_[index].dist > 0) {
-        Value oldDist = heap_[index].dist;
-        heap_[index].dist = dist*oldDist/(oldDist+dist);
+    if (heap_[index].dist > dist) {
+        heap_[index].dist = dist;
         //对节点进行上浮操作
         heapifyUp(index);
     }

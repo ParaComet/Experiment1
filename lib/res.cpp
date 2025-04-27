@@ -16,20 +16,44 @@ ResNet::~ResNet() {
 
 int ResNet::addNode(const Name& name) {
     // TODO: add node to resNet 
-    if (nameToIndex_.find(name) == nameToIndex_.end()) {
+    int index = findNode(name);
+    if (index == -1) {
         nodes_.push_back(name);
         nameToIndex_[name] = nodes_.size() - 1;
         return nodes_.size() - 1;
     }
-    return 0;
+    return index;
 }   
+
+int ResNet::findNode(const Name& name) const {
+    //查找节点的索引
+    if (nameToIndex_.find(name) == nameToIndex_.end()) {
+        return -1;
+    }
+    return nameToIndex_.at(name);
+}
 
 int ResNet::CircleCheck(const Name& src, const Name& dst) {
     // TODO: check if there is a circle in the resNet
-    if(addNode(src) || addNode(dst)) {
-        return 0;
+    if (src == dst) {
+        return 1;
     }
     
+    bool flag = false;
+
+    if (findNode(src) == -1) {
+        addNode(src);
+        flag = true;
+    }
+    if(findNode(dst) == -1) {
+        addNode(dst);
+        flag = true;
+    }
+    if (flag) {
+        std::cout << "No circle, node not found" << std::endl;
+        return 0;
+    }
+
     size_t srcIndex = nameToIndex_[src];
     size_t dstIndex = nameToIndex_[dst];
     //检查是否访问过该节点
@@ -58,11 +82,11 @@ int ResNet::CircleCheck(const Name& src, const Name& dst) {
     return 0;
 }
 
-void ResNet::addEdge(const Name& src, const Name& dst, Value value) {
+int ResNet::addEdge(const Name& src, const Name& dst, Value value) {
     //检查目标节点到源节点是否存在路径
     if(CircleCheck(dst,src)) {
         std::cout << "Cannot add edge, there is a circle in the resNet" << std::endl;
-        return;
+        return 1;
     }
 
     // 获取源节点的索引
@@ -74,13 +98,13 @@ void ResNet::addEdge(const Name& src, const Name& dst, Value value) {
     for (auto& e : edge) {
         if (e.first == dst) {
             e.second = value;
-            return;
+            return 2;
         }
     }
     // 边不存在，添加边
     edge.push_back(std::make_pair(dst, value));
     nodes_[srcIndex].num_edges++;
-    return;
+    return 0;
 }
 
 void ResNet::printGraph() const {
@@ -105,5 +129,50 @@ const std::vector<std::pair<Name, Value>>& ResNet::getEdges(const Name& node) co
     return empty;
 }
 
+int ResNet::removeEdge(const Name& src, const Name& dst) {
+    //检查源节点是否存在
+    if (nameToIndex_.find(src) == nameToIndex_.end()) {
+        return 1;
+    }
+    //获取源节点的索引
+    size_t srcIndex = nameToIndex_[src];
+    //遍历源节点的边
+    for (auto it = nodes_[srcIndex].edges.begin(); it != nodes_[srcIndex].edges.end(); ++it) {
+        if (it->first == dst) {
+            nodes_[srcIndex].edges.erase(it);
+            nodes_[srcIndex].num_edges--;
+            return 0;
+        }
+    }
 
+    return 0;
+}
+
+int ResNet::removeNode(const Name& name) {
+    //检查节点是否存在
+    if (nameToIndex_.find(name) == nameToIndex_.end()) {
+        return 1;
+    }
+    //获取节点的索引
+    size_t index = nameToIndex_[name];
+    //删除节点
+    nodes_.erase(nodes_.begin() + index);
+    //更新nameToIndex_
+    for (auto it = nameToIndex_.begin(); it != nameToIndex_.end(); ++it) {
+        if (it->second > index) {
+            it->second--;
+        }
+        //删除节点的边
+        for (auto edgeIt = nodes_[it->second].edges.begin(); edgeIt != nodes_[it->second].edges.end(); ) {
+            if (edgeIt->first == name) {
+                edgeIt = nodes_[it->second].edges.erase(edgeIt);
+                nodes_[it->second].num_edges--;
+            } else {
+                ++edgeIt;
+            }
+        }
+    }
+    nameToIndex_.erase(name);
+    return 0;
+}
 

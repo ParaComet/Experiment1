@@ -3,6 +3,7 @@
 #include "res.h"
 #include "Dijk.h"
 #include "PathS.h"
+#include "Console.h"
 
 using namespace TASK1;
 
@@ -17,6 +18,9 @@ void GetData(ResNet &res) {
 
 int main() {
     ResNet graph;
+
+    Console console(graph);
+    console.start();
 /*  Heap minHeap;
     
     minHeap.insert('A', 5);
@@ -41,7 +45,7 @@ int main() {
 
 */   
      // 1. 创建图
-     
+/*     
      graph.addNode('A');
      graph.addNode('B');
      graph.addNode('C');    
@@ -73,6 +77,7 @@ int main() {
             }
          }
      }
+*/
 
 /*   auto start = std::chrono::high_resolution_clock::now();
      if(graph.CircleCheck('A', 'D')) {
@@ -82,11 +87,11 @@ int main() {
      auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
      std::cout << "Time used: " << duration.count() << " microseconds" << std::endl;
 */
-     std::cout << std::endl;
+/*     std::cout << std::endl;
 
      PathS pathFinder(graph);
      pathFinder.searchPath();
      pathFinder.printAllPaths();
-    
+*/    
     return 0;
 }

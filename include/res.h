@@ -26,9 +26,12 @@ namespace TASK1 {
         virtual ~ResNet();
         int addNode(const Name& name);
         int CircleCheck(const Name& src, const Name& dst);
-        void addEdge(const Name& src, const Name& dst, Value value);
+        int addEdge(const Name& src, const Name& dst, Value value);
+        int removeEdge(const Name& src, const Name& dst);
+        int removeNode(const Name& name);
         void printGraph() const;
-        
+        int findNode(const Name& name) const;
+
         const std::vector<std::pair<Name, Value>>& getEdges(const Name& node) const;
 
         std::vector<Node> nodes_;
