@@ -2,6 +2,9 @@
 #include "res.h"
 #include <cstddef>
 #include <iostream>
+#include <string>
+#include "Color.h"
+
 
 using namespace TASK1;
 
@@ -71,32 +74,42 @@ void PathS::dfsSearch(const ResNet& resNet, size_t currentIndex,
 
 void PathS::printPath(const std::vector<Name>& path, Value weight, int type) {
     if (path.empty()) {
-        std::cout << "No path found" << std::endl;
+        std::cout << Color::colorize("No path found", Color::RED) << std::endl;
         return;
     }
     // 打印路径
     for (size_t i = 0; i < path.size(); ++i) {
         if (i != 0) {
-            std::cout << " -> ";
+            if (type == 1) {
+                std::cout << Color::colorize(" -> ", Color::CYAN);
+            } else {
+                std::cout << Color::colorize(" -> ", Color::BLUE);
+            }
         }
-        std::cout << path[i];
+        char a = path[i];
+        std::string str(1, a);
+        std::cout << Color::colorize(str, Color::YELLOW);
     }
     // 打印路径权重
     if (type == 0) {
-        std::cout << " (Total weight: " << weight << ")" << std::endl;
-
+        std::cout << " " << Color::colorize("(Total weight: ", Color::MAGENTA) 
+                  << Color::colorize(std::to_string(weight), Color::GREEN) 
+                  << Color::colorize(")", Color::MAGENTA) << std::endl;
     } else if (type == 1) {
-        std::cout << " -> ";
+        std::cout << Color::colorize(" -> ", Color::CYAN);
     }// type ==1 为打印环路
 }
 
 void PathS::printAllPaths() {
     // 打印所有路径
     for (const auto& node : Node_) {
-        std::cout << "Paths starting from " << node.name << ":" << std::endl;
+        char a = node.name;
+        std::string str(1, a);
+        std::cout << Color::colorize("Paths starting from ", Color::GREEN) 
+                  << Color::colorize(str, Color::YELLOW, Color::BOLD) 
+                  << Color::colorize(":", Color::GREEN) << std::endl;
         if (node.paths.empty()) {
-            std::cout << "No path found" << std::endl;
-            std::cout << std::endl;
+            std::cout << Color::colorize("No path found", Color::RED) << std::endl << std::endl;
             continue;
         }
         for(const auto& path : node.paths) {
@@ -116,7 +129,9 @@ void PathS::printPathto(const Name& from, const Name& to, Value weight, int type
                 if (path.first.back() == to) {
                     printPath(path.first, path.second, type);
                     if (type == 1) {
-                        std::cout << from << " (Total weight: " << path.second+weight << ")" <<std::endl;
+                        std::cout << from << Color::colorize(" (Total weight: ", Color::MAGENTA) 
+                        << Color::colorize(std::to_string(path.second+weight), Color::GREEN) 
+                        << Color::colorize(")", Color::MAGENTA) <<std::endl;
                     }
                     found = true;
                 }
@@ -124,10 +139,12 @@ void PathS::printPathto(const Name& from, const Name& to, Value weight, int type
             if (found) {
                 return;
             }
-            std::cout << "No path found" << std::endl;
+            std::cout << Color::colorize("No path found", Color::RED) << std::endl << std::endl;
             return;
         }
     }
-    std::cout << "Node " << from << " not found" << std::endl;
+    std::cout << Color::colorize("Node ",Color::RED) 
+            << Color::colorize(std::to_string(from), Color::YELLOW) 
+            << Color::colorize(" not found", Color::RED) << std::endl;
     return;
 }

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <queue>
 #include "PathS.h"
+#include "Color.h"
+#include <algorithm>
 
 using namespace TASK1;
 
@@ -52,7 +54,7 @@ int ResNet::CircleCheck(const Name& src, const Name& dst) {
         flag = true;
     }
     if (flag) {
-        std::cout << "No circle, node not found" << std::endl;
+        std::cout << Color::colorize("No circle, node not found",Color::YELLOW,Color::BOLD) << std::endl;
         return 0;
     }
 
@@ -80,14 +82,14 @@ int ResNet::CircleCheck(const Name& src, const Name& dst) {
             }
         }
     }
-    std::cout << "No circle found" << std::endl;
+    std::cout << Color::colorize("No circle found", Color::YELLOW, Color::BOLD) << std::endl;
     return 0;
 }
 
 int ResNet::addEdge(const Name& src, const Name& dst, Value value) {
     //检查目标节点到源节点是否存在路径
     if(CircleCheck(dst,src)) {
-        std::cout << "Cannot add edge, there is a circle in the resNet" << std::endl;
+        std::cout << Color::colorize("Cannot add edge, there is a circle in the resNet",Color::RED,Color::BOLD) << std::endl;
         size_t srcIndex = nameToIndex_[src];
         size_t dstIndex = nameToIndex_[dst];
         //检查边是否已经存在
@@ -122,17 +124,33 @@ int ResNet::addEdge(const Name& src, const Name& dst, Value value) {
 }
 
 void ResNet::printGraph() const {
+    using namespace TASK1;
     if (nodes_.empty()) {
-        std::cout << "No graph exists" << std::endl;
+        std::cout << Color::colorize("No graph exists", Color::RED) << std::endl;
         return;
     }
 
-    // 打印节点
+    // 打印标题
+    std::cout << Color::colorize("Graph Structure:", Color::GREEN, Color::BOLD) << std::endl;
+    
+    // 打印节点和边
     for (const auto& node : nodes_) {
-        std::cout << "Node: " << node.name << std::endl;
+        // 打印节点名称
+        std::cout << Color::colorize("Node: ", Color::CYAN) 
+                  << Color::colorize(std::string(1, node.name), Color::YELLOW, Color::BOLD) 
+                  << std::endl;
+        
         // 打印边
-        for (const auto& edge : node.edges) {
-            std::cout << "    " << edge.first << " " << edge.second << std::endl;
+        if (node.edges.empty()) {
+            std::cout << Color::colorize("    No edges", Color::MAGENTA) << std::endl;
+        } else {
+            for (const auto& edge : node.edges) {
+                std::cout << "    " 
+                          << Color::colorize(std::string(1, edge.first), Color::BLUE)
+                          << " " 
+                          << Color::colorize(std::to_string(edge.second), Color::MAGENTA)
+                          << std::endl;
+            }
         }
         std::cout << std::endl;
     }
@@ -149,73 +167,78 @@ const std::vector<std::pair<Name, Value>>& ResNet::getEdges(const Name& node) co
 }
 
 int ResNet::removeEdge(const Name& src, const Name& dst) {
-    //检查源节点是否存在
+    // 检查源节点是否存在
     if (nameToIndex_.find(src) == nameToIndex_.end()) {
-        //若源节点不存在，则图中不存在该边,返回1
         return 1;
     }
     if (nameToIndex_.find(dst) == nameToIndex_.end()) {
-        //若目标节点不存在，则图中不存在该边,返回1
         return 1;
     }
 
-    //获取源节点的索引
     size_t srcIndex = nameToIndex_[src];
     size_t dstIndex = nameToIndex_[dst];
 
-    for (auto it = errnodes_[srcIndex].edges.begin(); it != errnodes_[srcIndex].edges.end(); ++it) {
+    // 先检查并删除非法边
+    for (auto it = errnodes_[srcIndex].edges.begin(); it != errnodes_[srcIndex].edges.end(); ) {
         if (it->first == dst) {
-            errnodes_[srcIndex].edges.erase(it);
+            it = errnodes_[srcIndex].edges.erase(it);
             errnodes_[srcIndex].num_edges--;
             return 2;
+        } else {
+            ++it;
         }
     }
 
-    //遍历源节点的边
-    for (auto it = nodes_[srcIndex].edges.begin(); it != nodes_[srcIndex].edges.end(); ++it) {
+    // 检查并删除正常边
+    bool edgeFound = false;
+    for (auto it = nodes_[srcIndex].edges.begin(); it != nodes_[srcIndex].edges.end(); ) {
         if (it->first == dst) {
-            nodes_[srcIndex].edges.erase(it);
+            it = nodes_[srcIndex].edges.erase(it);
             nodes_[srcIndex].num_edges--;
-            return 0;
+            edgeFound = true;
+            break;
+        } else {
+            ++it;
         }
     }
-    PathS path(*this);
-    path.searchPath();
-    //遍历所有非法边的起始节点
-    for (auto ernode : errnodes_) {
-        //便利所有以ernode.name为起始节点的非法边
-        for(auto edge : ernode.edges) {
-            bool flag = false;
-            //查找终点为ernode.name的路径
-            for (const auto& path : path.Node_[edge.first].paths) {
-                if (path.first.back() == ernode.name) {
-                    flag = true;
-                    break;
-                }
+
+    if (!edgeFound) {
+        return 1;
+    }
+
+    // 处理可能因此变为合法的非法边
+    std::vector<std::pair<Name, Name>> edgesToLegalize;
+    
+    // 先收集需要合法化的边，避免在遍历时修改容器
+    for (const auto& ernode : errnodes_) {
+        for (const auto& edge : ernode.edges) {
+            if (!CircleCheck(ernode.name, edge.first)) {
+                edgesToLegalize.push_back(std::make_pair(ernode.name, edge.first));
             }
-            if (flag) {
-                continue;
-            } else {
-                //将该非法边修正为合法并加入图中，并删除其对应的非法边
-                addEdge(ernode.name, edge.first, edge.second);
-                PathS path(*this);
-                path.searchPath();
-                //删除非法边
-                for (auto it = errnodes_[nameToIndex_[ernode.name]].edges.begin(); it != errnodes_[nameToIndex_[ernode.name]].edges.end(); ) {
-                    if (it->first == edge.first) {
-                        it = errnodes_[nameToIndex_[ernode.name]].edges.erase(it);
-                        errnodes_[nameToIndex_[ernode.name]].num_edges--;
-                        break;
-                    } else {
-                        ++it;
-                    }
-                }
+        }
+    }
+
+    // 处理收集到的边（C++11 中替换结构化绑定）
+    for (const auto& edge_pair : edgesToLegalize) {
+        const Name& from = edge_pair.first;
+        const Name& to = edge_pair.second;
+
+        auto it = std::find_if(errnodes_[nameToIndex_[from]].edges.begin(),
+                              errnodes_[nameToIndex_[from]].edges.end(),
+                              [&to](const std::pair<Name, Value>& e) { return e.first == to; });
+        if (it != errnodes_[nameToIndex_[from]].edges.end()) {
+            Value val = it->second;
+            if (!addEdge(from, to, val)) {
+                errnodes_[nameToIndex_[from]].edges.erase(it);
+                errnodes_[nameToIndex_[from]].num_edges--;
             }
         }
     }
 
     return 0;
 }
+
+
 
 int ResNet::removeNode(const Name& name) {
     //检查节点是否存在
@@ -255,21 +278,37 @@ int ResNet::removeNode(const Name& name) {
 }
 
 int ResNet::printErrNodes() const {
-        // 打印节点
+    using namespace TASK1;
+    
+    // 打印节点
     if (errnodes_.empty()) {
-        std::cout << "No graph exists" << std::endl;
+        std::cout << Color::colorize("No graph exists", Color::RED) << std::endl;
         return 1;
     }
 
-    std::cout << "Error edges:" << std::endl;
+    // 打印标题
+    std::cout << Color::colorize("Error edges:", Color::RED, Color::BOLD) << std::endl;
+    
+    // 打印错误节点和边
     for (const auto& node : errnodes_) {
-        std::cout << "Node: " << node.name << std::endl;
-        // 打印边
-        for (const auto& edge : node.edges) {
-            std::cout << "    " << edge.first << " " << edge.second << std::endl;
+        // 打印节点名称
+        std::cout << Color::colorize("Node: ", Color::CYAN) 
+                  << Color::colorize(std::string(1, node.name), Color::YELLOW, Color::BOLD) 
+                  << std::endl;
+        
+        // 打印错误边
+        if (node.edges.empty()) {
+            std::cout << Color::colorize("    No error edges", Color::MAGENTA) << std::endl;
+        } else {
+            for (const auto& edge : node.edges) {
+                std::cout << "    " 
+                          << Color::colorize(std::string(1, edge.first), Color::RED)
+                          << " " 
+                          << Color::colorize(std::to_string(edge.second), Color::MAGENTA)
+                          << std::endl;
+            }
         }
         std::cout << std::endl;
     }
     return 0;
-
 }

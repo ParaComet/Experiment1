@@ -14,7 +14,7 @@ Console::Console(ResNet& graph) : graph_(graph) {
 }
 
 void Console::start() {
-    std::cout << "Graph Processing Console (type 'help' for commands)" << std::endl;
+    std::cout << Color::colorize("Graph Processing Console (type 'help' for commands)", Color::GREEN, Color::BOLD) << std::endl;
     
     while (true) {
         std::cout << "> ";
@@ -35,23 +35,24 @@ void Console::start() {
 }
 
 void Console::printHelp() const {
-    std::cout << "Available commands:\n"
-              << "  help - Show this help message\n"
-              << "  addnode - Add a node to the graph\n"
-              << "  addedge - Add multiple edges (enter 'done' when finished)\n"
-              << "  shortest - Find shortest path between two nodes\n"
-              << "  allpaths - Find all paths in the graph\n"
-              << "  dijk - Find all shortest paths in the graph\n"
-              << "  print - Print the graph structure\n"
-              << "  dlnode - Delete a node from the graph\n"
-              << "  dledge - Delete an edge from the graph\n"
-              << "  printpath - Print paths from start to end in the graph\n"
-              << "  printcicle - Print all cycles in the graph\n"
-              << "  exit/quit - Exit the program\n";
+    std::cout << Color::colorize("Available commands:", Color::GREEN, Color::BOLD) << "\n"
+              << Color::colorize("  help", Color::YELLOW) << " - Show this help message\n"
+              << Color::colorize("  addnode", Color::YELLOW) << " - Add a node to the graph\n"
+              << Color::colorize("  addedge", Color::YELLOW) << " - Add multiple edges (enter 'done' when finished)\n"
+              << Color::colorize("  shortest", Color::YELLOW) << " - Find shortest path between two nodes\n"
+              << Color::colorize("  allpaths", Color::YELLOW) << " - Find all paths in the graph\n"
+              << Color::colorize("  dijk", Color::YELLOW) << " - Find all shortest paths in the graph\n"
+              << Color::colorize("  print", Color::YELLOW) << " - Print the graph structure\n"
+              << Color::colorize("  dlnode", Color::YELLOW) << " - Delete a node from the graph\n"
+              << Color::colorize("  dledge", Color::YELLOW) << " - Delete an edge from the graph\n"
+              << Color::colorize("  printpath", Color::YELLOW) << " - Print paths from start to end in the graph\n"
+              << Color::colorize("  printcycle", Color::YELLOW) << " - Print all cycles in the graph\n"
+              << Color::colorize("  exit/quit", Color::YELLOW) << " - Exit the program\n"
+              << Color::colorize("  printerr", Color::YELLOW) << " - Print all error edges in the graph\n";
 }
 
-
 void Console::processCommand(const std::string& cmd) {
+    using namespace TASK1;
     if (cmd == "help") {
         printHelp();
     } else if (cmd == "addnode") {
@@ -61,6 +62,7 @@ void Console::processCommand(const std::string& cmd) {
     } else if (cmd == "shortest") {
         findShortestPath();
     } else if (cmd == "dijk") {
+        std::cout << Color::colorize("Calculating all shortest paths in the graph...", Color::CYAN) << "\n";
         findAllShortestPaths();
     } else if (cmd == "allpaths") {
         findAllPaths();
@@ -72,97 +74,116 @@ void Console::processCommand(const std::string& cmd) {
         deleteEdge();
     } else if (cmd == "printpath") {
         printPath();
-    } else if (cmd == "printcicle") {
+    } else if (cmd == "printcycle") {
         printCicle();
+    } else if (cmd == "printerr") {
+        printErrEdge();
     } else {
-        std::cout << "Unknown command. Type 'help' for available commands.\n";
+        std::cout << Color::colorize("Unknown command. Type 'help' for available commands.", Color::RED) << "\n";
     }
 }
 
 void Console::addNode() {
-    std::cout << "Enter node name (single character): ";
+    using namespace TASK1;
+    std::cout << Color::colorize("Enter node name (single character): ", Color::CYAN);
     Name name;
     std::cin >> name;
-    std::cin.ignore();  // 清除输入缓冲区
+    std::cin.ignore();
     
     name = toupper(name);
-
+    std::string nameStr(1, name);
     if (graph_.addNode(name) == -1) {
-        std::cout << "Node " << name << " already exists.\n";
+        std::cout << Color::colorize("Node ", Color::RED) 
+                  << Color::colorize(nameStr, Color::YELLOW) 
+                  << Color::colorize(" already exists.", Color::RED) << "\n";
     } else {
-        std::cout << "Node " << name << " added successfully.\n";
+        std::cout << Color::colorize("Node ", Color::GREEN) 
+                  << Color::colorize(nameStr, Color::YELLOW) 
+                  << Color::colorize(" added successfully.", Color::GREEN) << "\n";
     }
 }
 
+
 void Console::addEdge() {
-    std::cout << "Enter edges (source destination weight), one per line. Enter 'done' when finished:\n";
+    using namespace TASK1;
+    std::cout << Color::colorize("Enter edges (source destination weight), one per line. Enter 'done' when finished:\n", Color::CYAN);
     
     while (true) {
-        std::cout << "Edge> ";
+        std::cout << Color::colorize("Edge> ", Color::BLUE);
         std::string input;
         std::getline(std::cin, input);
         
-        // 检查是否结束输入
         if (input == "done" || input == "exit") {
             break;
         }
         
-        // 跳过空行
         if (input.empty()) {
             continue;
         }
         
-        // 解析输入,将字符串转换为输入流
         std::istringstream iss(input);
         Name src, dst;
         Value weight;
         
-        // 读取并验证输入格式
         if (!(iss >> src >> dst >> weight)) {
-            std::cout << "Error: Invalid input format. Please enter in the format: SourceNode DestinationNode Weight\n";
+            std::cout << Color::colorize("Error: Invalid input format. Please enter in the format: SourceNode DestinationNode Weight\n", Color::RED);
             continue;
         }
         
         src = toupper(src);
         dst = toupper(dst);
 
-/*        // 验证节点是否存在
-        if (!graph_.nameToIndex_.count(src)) {
-            std::cout << "Error: Source node " << src << " does not exist.\n";
+        std::string srcStr(1, src);
+        std::string dstStr(1, dst);
+        
+        /*if (graph_.findNode(src) == -1) {
+            std::cout << Color::colorize("Error: Source node ", Color::RED)
+                      << Color::colorize(srcStr, Color::YELLOW)
+                      << Color::colorize(" does not exist.\n", Color::RED);
             continue;
         }
-        if (!graph_.nameToIndex_.count(dst)) {
-            std::cout << "Error: Destination node " << dst << " does not exist.\n";
+        
+        if (graph_.findNode(dst) == -1) {
+            std::cout << Color::colorize("Error: Destination node ", Color::RED)
+                      << Color::colorize(dstStr, Color::YELLOW)
+                      << Color::colorize(" does not exist.\n", Color::RED);
             continue;
-        }
-*/
-
-        // 验证权重是否为正值
+        }*/
         if (weight <= 0) {
-            std::cout << "Error: Weight must be a positive number.\n";
+            std::cout << Color::colorize("Error: Weight must be a positive number.\n", Color::RED);
             continue;
         }
 
         try {
             int result = graph_.addEdge(src, dst, weight);
             if (result == 0) {
-                std::cout << "Edge (" << src << ", " << dst << ") added successfully.\n";
+                std::cout << Color::colorize("Edge (", Color::GREEN)
+                          << Color::colorize(srcStr, Color::YELLOW)
+                          << Color::colorize(", ", Color::GREEN)
+                          << Color::colorize(dstStr, Color::YELLOW)
+                          << Color::colorize(") added successfully.\n", Color::GREEN);
             } else if (result == 2) {
-                std::cout << "Edge (" << src << ", " << dst << ") already exists.\n";
-            } else if (result == 1){
+                std::cout << Color::colorize("Edge (", Color::RED)
+                          << Color::colorize(srcStr, Color::YELLOW)
+                          << Color::colorize(", ", Color::RED)
+                          << Color::colorize(dstStr, Color::YELLOW)
+                          << Color::colorize(") already exists.\n", Color::RED);
+            } else if (result == 1) {
                 PathS pathFinder(graph_);
                 pathFinder.searchPath();
-                pathFinder.printPathto(dst, src, weight,1);// 1表示打印环路
+                pathFinder.printPathto(dst, src, weight, 1);
             }
         } catch (const std::exception& e) {
-            std::cout << "Error: " << e.what() << "\n";
+            std::cout << Color::colorize("Error: ", Color::RED)
+                       << Color::colorize(e.what(), Color::RED) << "\n";
         }
     }
 }
 
 
+
 void Console::findShortestPath() {
-    std::cout << "Enter start node and end node (e.g. A B): ";
+    std::cout << Color::colorize("Enter start node and end node (e.g. A B): ", Color::CYAN);
     Name start, end;
     std::cin >> start >> end;
     std::cin.ignore();  // 清除输入缓冲区
@@ -170,22 +191,52 @@ void Console::findShortestPath() {
     start = toupper(start);
     end = toupper(end);
 
+    std::string startStr(1, start);
+    std::string endStr(1, end);
+    
+    if (graph_.findNode(start) == -1) {
+        std::cout << Color::colorize("Error: Start node ", Color::RED)
+                  << Color::colorize(startStr, Color::YELLOW)
+                  << Color::colorize(" does not exist.\n", Color::RED);
+        return;
+    }
+    
+    if (graph_.findNode(end) == -1) {
+        std::cout << Color::colorize("Error: End node ", Color::RED)
+                  << Color::colorize(endStr, Color::YELLOW)
+                  << Color::colorize(" does not exist.\n", Color::RED);
+        return;
+    }
+
     Dijkstra dijkstra(graph_);
     dijkstra.shortestPath(start);
     
     Value distance = dijkstra.getDistance(end);
     if (distance == INF) {
-        std::cout << "No path exists from " << start << " to " << end << ".\n";
+        std::cout << Color::colorize("No path exists from ", Color::RED)
+                  << Color::colorize(startStr, Color::YELLOW)
+                  << Color::colorize(" to ", Color::RED)
+                  << Color::colorize(endStr, Color::YELLOW)
+                  << Color::colorize(".\n", Color::RED);
         return;
     }
     
-    std::cout << "Shortest distance from " << start << " to " << end << ": " << distance << "\n";
-    std::cout << "Path: ";
+    std::cout << Color::colorize("Shortest distance from ", Color::GREEN)
+              << Color::colorize(startStr, Color::YELLOW)
+              << Color::colorize(" to ", Color::GREEN)
+              << Color::colorize(endStr, Color::YELLOW)
+              << Color::colorize(": ", Color::GREEN)
+              << Color::colorize(std::to_string(distance), Color::MAGENTA) << "\n";
+    
+    std::cout << Color::colorize("Path: ", Color::CYAN);
     
     auto path = dijkstra.getPath(end);
     for (size_t i = 0; i < path.size(); ++i) {
-        if (i != 0) std::cout << " -> ";
-        std::cout << path[i];
+        if (i != 0) std::cout << Color::colorize(" -> ", Color::BLUE);
+        char c = path[i];
+        std::string cStr(1, c);
+        std::cout << Color::colorize(cStr, Color::YELLOW);
+        
     }
     std::cout << "\n";
 }
@@ -201,14 +252,19 @@ void Console::printGraph() const {
 }
 
 void Console::findAllShortestPaths() {
-    std::cout << "Calculating all shortest paths in the graph...\n";
+    std::cout << Color::colorize("Calculating all shortest paths in the graph...\n", Color::CYAN, Color::BOLD);
     
     // 遍历所有节点作为起点
     for (const auto& startNode : graph_.nodes_) {
         Dijkstra dijkstra(graph_);
         dijkstra.shortestPath(startNode.name);
         
-        std::cout << "\nShortest paths from node " << startNode.name << ":\n";
+        char c = startNode.name;
+        std::string cStr(1, c);
+
+        std::cout << "\n" << Color::colorize("Shortest paths from node ", Color::GREEN)
+                  << Color::colorize(cStr, Color::YELLOW, Color::BOLD)
+                  << Color::colorize(":\n", Color::GREEN);
         
         // 遍历所有节点作为终点
         for (const auto& endNode : graph_.nodes_) {
@@ -216,38 +272,62 @@ void Console::findAllShortestPaths() {
             
             Value distance = dijkstra.getDistance(endNode.name);
             
-            if (distance == INF) {
-                std::cout << "  No path to " << endNode.name << "\n";
+            char b = endNode.name;
+            std::string bStr(1, b);
+
+            if (distance == INF&&startNode.name!=endNode.name) {
+
+                std::cout << Color::colorize("  No path to ", Color::RED)
+                          << Color::colorize(bStr, Color::YELLOW) << "\n";
                 continue;
             }
             
-            std::cout << "  To " << endNode.name << ": " << distance << " (";
+            std::cout << Color::colorize("  To ", Color::CYAN)
+                      << Color::colorize(bStr, Color::YELLOW)
+                      << Color::colorize(": ", Color::CYAN)
+                      << Color::colorize(std::to_string(distance), Color::MAGENTA)
+                      << Color::colorize(" (", Color::CYAN);
+
             
             auto path = dijkstra.getPath(endNode.name);
             for (size_t i = 0; i < path.size(); ++i) {
-                if (i != 0) std::cout << " -> ";
-                std::cout << path[i];
+                if (i != 0) std::cout << Color::colorize(" -> ", Color::BLUE);
+                
+                char a = path[i];
+                std::string aStr(1, a);
+                std::cout << Color::colorize(aStr, Color::YELLOW);
+            
             }
-            std::cout << ")\n";
+            std::cout << Color::colorize(")\n", Color::CYAN);
         }
     }
     
-    std::cout << "All shortest paths calculation completed.\n";
+    std::cout << Color::colorize("\nAll shortest paths calculation completed.\n", Color::GREEN, Color::BOLD);
 }
 
 void Console::deleteNode() {
     Name name;
-    std::cout << "Enter node name to delete: ";
+    std::cout << Color::colorize("Enter node name to delete: ", Color::CYAN);
     std::cin >> name;
     std::cin.ignore();  // 清除输入缓冲区
     
     name = toupper(name);
     
+    char c = name;
+    std::string cStr(1, c);
+    std::cout << Color::colorize("Deleting node ", Color::RED)
+              << Color::colorize(cStr, Color::YELLOW)
+              << Color::colorize(" from the graph...\n", Color::RED);
+
     int result = graph_.removeNode(name);
     if (result == 0) {
-        std::cout << "Node " << name << " deleted successfully.\n";
+        std::cout << Color::colorize("Node ", Color::GREEN)
+                  << Color::colorize(cStr, Color::YELLOW)
+                  << Color::colorize(" deleted successfully.\n", Color::GREEN);
     } else {
-        std::cout << "Node " << name << " does not exist.\n";
+        std::cout << Color::colorize("Node ", Color::RED)
+                  << Color::colorize(cStr, Color::YELLOW)
+                  << Color::colorize(" does not exist.\n", Color::RED);
     }
     return;
 }
@@ -255,21 +335,39 @@ void Console::deleteNode() {
 void Console::deleteEdge() {
     // 验证节点是否存在
     Name src, dst;
-    std::cout << "Enter source and destination nodes of edge to delete (e.g. A B): ";
+    std::cout << Color::colorize("Enter source and destination nodes of edge to delete (e.g. A B): ", Color::CYAN);
     std::cin >> src >> dst;
     std::cin.ignore();  // 清除输入缓冲区
     
     src = toupper(src);
     dst = toupper(dst);
+
+    char a = src;
+    char b = dst;
+    std::string aStr(1, a);
+    std::string bStr(1, b);
+
     // 验证边是否存在
     int result = graph_.removeEdge(src, dst);
 
     if (result == 0) {
-        std::cout << "Edge (" << src << ", " << dst << ") deleted successfully.\n";
+        std::cout << Color::colorize("Edge (", Color::GREEN)
+                  << Color::colorize(aStr, Color::YELLOW)
+                  << Color::colorize(", ", Color::GREEN)
+                  << Color::colorize(bStr, Color::YELLOW)
+                  << Color::colorize(") deleted successfully.\n", Color::GREEN);
     } else if (result == 1) {
-        std::cout << "Edge (" << src << ", " << dst << ") does not exist.\n";
+        std::cout << Color::colorize("Edge (", Color::RED)
+                  << Color::colorize(aStr, Color::YELLOW)
+                  << Color::colorize(", ", Color::RED)
+                  << Color::colorize(bStr, Color::YELLOW)
+                  << Color::colorize(") does not exist.\n", Color::RED);
     } else if (result == 2) {
-        std::cout << "errEdge (" << src << ", " << dst << ") deleted successfully.\n";
+        std::cout << Color::colorize("errEdge (", Color::MAGENTA)
+                  << Color::colorize(aStr, Color::YELLOW)
+                  << Color::colorize(", ", Color::MAGENTA)
+                  << Color::colorize(bStr, Color::YELLOW)
+                  << Color::colorize(") deleted successfully.\n", Color::MAGENTA);
     }
     return;
 }
@@ -277,7 +375,7 @@ void Console::deleteEdge() {
 void Console::printPath() {
     // 验证节点是否存在
     Name start, end;
-    std::cout << "Enter start and end nodes of path (e.g. A B): ";
+    std::cout << Color::colorize("Enter start and end nodes of path (e.g. A B): ", Color::CYAN);
     std::cin >> start >> end;
     std::cin.ignore();  // 清除输入缓冲区
     
@@ -300,7 +398,11 @@ void Console::printCicle() {
         //遍历所有节点
         if (!ernode.edges.empty()) {
             flag = true;// 存在cycle
-            std::cout << "Node: " << ernode.name << " has cycles:\n";
+            char c = ernode.name;
+            std::string cStr(1, c);
+            std::cout << Color::colorize("Node: ", Color::CYAN)
+                      << Color::colorize(cStr, Color::YELLOW, Color::BOLD)
+                      << Color::colorize(" has cycles:\n", Color::CYAN);
             //查找节点是否有环路
             for (const auto& edge : ernode.edges) {
                 pathFinder.printPathto(edge.first, ernode.name, edge.second,1);
@@ -310,9 +412,13 @@ void Console::printCicle() {
     }
 
     if (!flag) {
-        std::cout << "There is no cycle in the graph.\n";
+        std::cout << Color::colorize("There is no cycle in the graph.\n", Color::GREEN);
     } else {
-        std::cout << "All cycles have been printed.\n";
+        std::cout << Color::colorize("All cycles have been printed.\n", Color::GREEN, Color::BOLD);
     }
     return;
+}
+
+void Console::printErrEdge() {
+    graph_.printErrNodes();
 }

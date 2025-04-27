@@ -25,6 +25,7 @@ private:
     void deleteEdge();  // 删除边
     void printPath();
     void printCicle();
+    void printErrEdge();
 private:
     ResNet& graph_;  // 图的引用
 };

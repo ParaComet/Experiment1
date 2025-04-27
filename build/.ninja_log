@@ -1,9 +1,10 @@
 # ninja log v6
-269	980	7674508069665122	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
+94	743	7674607651396332	CMakeFiles/Task1.dir/src/main.cpp.obj	fd035c4108cb719c
 529	765	7647952785875944	Task1.exe	6b367ba0f3d0f50f
-1805	2401	7674508085012954	liblib1.a	e052ff462fcc9114
-4	1805	7674508067017376	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
-110	1596	7674508068002537	CMakeFiles/lib1.dir/lib/PathS.cpp.obj	5c3b35e14db14942
-2401	2913	7674508090919890	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
-99	1633	7674508067961812	CMakeFiles/lib1.dir/lib/Dijk.cpp.obj	5416fa9015b8bfda
-129	1023	7674508068260451	CMakeFiles/lib1.dir/lib/Console.cpp.obj	f0dea2e4ccee005c
+1763	2277	7674683989367525	liblib1.a	318901f96ca727c8
+4	1762	7674683971826324	CMakeFiles/lib1.dir/lib/res.cpp.obj	6d81dfde44be693f
+3	1525	7674594397651219	CMakeFiles/lib1.dir/lib/PathS.cpp.obj	5c3b35e14db14942
+2278	2564	7674683994531624	D:/Experiment/Task1/bin/Task1.exe	fca6607fe75c8e9e
+94	1717	7674554636401473	CMakeFiles/lib1.dir/lib/Dijk.cpp.obj	5416fa9015b8bfda
+147	774	7674518560589434	CMakeFiles/lib1.dir/lib/Color.cpp.obj	be98c44071c2c95b
+4	1029	7674607650498149	CMakeFiles/lib1.dir/lib/Console.cpp.obj	f0dea2e4ccee005c
