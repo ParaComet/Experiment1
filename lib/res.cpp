@@ -1,4 +1,4 @@
-#include "res.h"
+﻿#include "res.h"
 #include <cstddef>
 #include <iostream>
 #include <queue>
@@ -20,6 +20,8 @@ ResNet::~ResNet() {
 int ResNet::addNode(const Name& name) {
     // TODO: add node to resNet 
     int index = findNode(name);//查找节点在图中的索引
+    
+    //如果未找到节点，将其加入合法节点与非法节点列表
     if (index == -1) {
         nodes_.push_back(name);
         errnodes_.push_back(name);
@@ -38,13 +40,16 @@ int ResNet::findNode(const Name& name) const {
 }
 
 int ResNet::CircleCheck(const Name& src, const Name& dst) {
-    // TODO: check if there is a circle in the resNet
+    // 环路检测函数
+
+    //如果源节点和目的节点相同，返回1
     if (src == dst) {
-        return 1;
+        addNode(src);
+        return 3;
     }
     
     bool flag = false;
-
+    //若节点不在图中，则加入图中，将添加标志置为true
     if (findNode(dst) == -1) {
         addNode(dst);
         flag = true;
@@ -88,21 +93,25 @@ int ResNet::CircleCheck(const Name& src, const Name& dst) {
 
 int ResNet::addEdge(const Name& src, const Name& dst, Value value) {
     //检查目标节点到源节点是否存在路径
-    if(CircleCheck(dst,src)) {
+    int ret = CircleCheck(src, dst);
+    if(ret) {
+        //若环路检测存在环路，则不能添加边并更新非法边列表
         std::cout << Color::colorize("Cannot add edge, there is a circle in the resNet",Color::RED,Color::BOLD) << std::endl;
+        
         size_t srcIndex = nameToIndex_[src];
-        size_t dstIndex = nameToIndex_[dst];
-        //检查边是否已经存在
+        // size_t dstIndex = nameToIndex_[dst];
+        
+        //检查边是否已经存在，如果存在，更新边的值
         for (auto &edge : errnodes_[srcIndex].edges) {
             if (edge.first == dst) {
                 edge.second = value;
-                return 1;
+                return ret;
             }
         }
         //边不存在，添加边
         errnodes_[srcIndex].edges.push_back(std::make_pair(dst, value));
         errnodes_[srcIndex].num_edges++;
-        return 1;
+        return ret;
     }
 
     // 获取源节点的索引
@@ -162,7 +171,7 @@ const std::vector<std::pair<Name, Value>>& ResNet::getEdges(const Name& node) co
     if (it != nameToIndex_.end()) {
         return nodes_[it->second].edges;
     }
-    static std::vector<std::pair<Name, Value>> empty; // 返回空引用
+    static std::vector<std::pair<Name, Value>> empty; // 若未找到节点，返回空引用
     return empty;
 }
 
@@ -176,9 +185,9 @@ int ResNet::removeEdge(const Name& src, const Name& dst) {
     }
 
     size_t srcIndex = nameToIndex_[src];
-    size_t dstIndex = nameToIndex_[dst];
+    // size_t dstIndex = nameToIndex_[dst];
 
-    // 先检查并删除非法边
+    // 先检查并删除非法边，若找到该边为非法边，其必不在合法边列表中，故直接返回2
     for (auto it = errnodes_[srcIndex].edges.begin(); it != errnodes_[srcIndex].edges.end(); ) {
         if (it->first == dst) {
             it = errnodes_[srcIndex].edges.erase(it);
@@ -223,12 +232,13 @@ int ResNet::removeEdge(const Name& src, const Name& dst) {
         const Name& from = edge_pair.first;
         const Name& to = edge_pair.second;
 
+        // it为指向错误边的迭代器
         auto it = std::find_if(errnodes_[nameToIndex_[from]].edges.begin(),
                               errnodes_[nameToIndex_[from]].edges.end(),
-                              [&to](const std::pair<Name, Value>& e) { return e.first == to; });
-        if (it != errnodes_[nameToIndex_[from]].edges.end()) {
+                              [&to](const std::pair<Name, Value>& e) { return e.first == to; });//lambda表达式查找错误边
+        if (it != errnodes_[nameToIndex_[from]].edges.end()) {//如果找到错误边,则将其合法化
             Value val = it->second;
-            if (!addEdge(from, to, val)) {
+            if (!addEdge(from, to, val)) {//合法化成功，将其从错误边列表中删除
                 errnodes_[nameToIndex_[from]].edges.erase(it);
                 errnodes_[nameToIndex_[from]].num_edges--;
             }
@@ -255,7 +265,7 @@ int ResNet::removeNode(const Name& name) {
         if (it->second > index) {
             it->second--;
         }
-        //删除节点的边
+        //删除合法节点的边
         for (auto edgeIt = nodes_[it->second].edges.begin(); edgeIt != nodes_[it->second].edges.end(); ) {
             if (edgeIt->first == name) {
                 edgeIt = nodes_[it->second].edges.erase(edgeIt);
@@ -264,6 +274,7 @@ int ResNet::removeNode(const Name& name) {
                 ++edgeIt;
             }
         }
+        //删除错误节点的边
         for (auto edgeIt = errnodes_[it->second].edges.begin(); edgeIt != errnodes_[it->second].edges.end(); ) {
             if (edgeIt->first == name) {
                 edgeIt = errnodes_[it->second].edges.erase(edgeIt);
@@ -274,13 +285,42 @@ int ResNet::removeNode(const Name& name) {
         }
     }
     nameToIndex_.erase(name);
+
+    // 处理可能因此变为合法的非法边
+    std::vector<std::pair<Name, Name>> edgesToLegalize;
+    
+    // 先收集需要合法化的边，避免在遍历时修改容器
+    for (const auto& ernode : errnodes_) {
+        for (const auto& edge : ernode.edges) {
+            if (!CircleCheck(ernode.name, edge.first)) {
+                edgesToLegalize.push_back(std::make_pair(ernode.name, edge.first));
+            }
+        }
+    }
+
+    // 处理收集到的边（C++11 中替换结构化绑定）
+    for (const auto& edge_pair : edgesToLegalize) {
+        const Name& from = edge_pair.first;
+        const Name& to = edge_pair.second;
+
+        auto it = std::find_if(errnodes_[nameToIndex_[from]].edges.begin(),
+                              errnodes_[nameToIndex_[from]].edges.end(),
+                              [&to](const std::pair<Name, Value>& e) { return e.first == to; });
+        if (it != errnodes_[nameToIndex_[from]].edges.end()) {
+            Value val = it->second;
+            if (!addEdge(from, to, val)) {
+                errnodes_[nameToIndex_[from]].edges.erase(it);
+                errnodes_[nameToIndex_[from]].num_edges--;
+            }
+        }
+    }
     return 0;
 }
 
 int ResNet::printErrNodes() const {
     using namespace TASK1;
     
-    // 打印节点
+    // 若不存在错误节点，则图为空
     if (errnodes_.empty()) {
         std::cout << Color::colorize("No graph exists", Color::RED) << std::endl;
         return 1;

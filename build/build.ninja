@@ -32,14 +32,14 @@ CONFIGURATION = Debug
 #############################################
 # Include rules file.
 
-include CMakeFiles/rules.ninja
+include CMakeFiles\rules.ninja
 
 # =============================================================================
 
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = D$:/Experiment/Task1/build/
+cmake_ninja_workdir = D$:\Experiment\Task1\build\
 # =============================================================================
 # Object build statements for EXECUTABLE target Task1
 
@@ -49,12 +49,13 @@ cmake_ninja_workdir = D$:/Experiment/Task1/build/
 
 build cmake_object_order_depends_target_Task1: phony || cmake_object_order_depends_target_lib1
 
-build CMakeFiles/Task1.dir/src/main.cpp.obj: CXX_COMPILER__Task1_unscanned_Debug D$:/Experiment/Task1/src/main.cpp || cmake_object_order_depends_target_Task1
-  DEP_FILE = CMakeFiles\Task1.dir\src\main.cpp.obj.d
-  FLAGS = -g -std=gnu++11
-  INCLUDES = -ID:/Experiment/Task1/include
+build CMakeFiles\Task1.dir\src\main.cpp.obj: CXX_COMPILER__Task1_unscanned_Debug D$:\Experiment\Task1\src\main.cpp || cmake_object_order_depends_target_Task1
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -ID:\Experiment\Task1\include
   OBJECT_DIR = CMakeFiles\Task1.dir
   OBJECT_FILE_DIR = CMakeFiles\Task1.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\Task1.dir\
+  TARGET_PDB = D:\Experiment\Task1\bin\Task1.pdb
 
 
 # =============================================================================
@@ -64,15 +65,18 @@ build CMakeFiles/Task1.dir/src/main.cpp.obj: CXX_COMPILER__Task1_unscanned_Debug
 #############################################
 # Link the executable D:\Experiment\Task1\bin\Task1.exe
 
-build D$:/Experiment/Task1/bin/Task1.exe: CXX_EXECUTABLE_LINKER__Task1_Debug CMakeFiles/Task1.dir/src/main.cpp.obj | liblib1.a || liblib1.a
-  FLAGS = -g
-  LINK_LIBRARIES = liblib1.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build D$:\Experiment\Task1\bin\Task1.exe: CXX_EXECUTABLE_LINKER__Task1_Debug CMakeFiles\Task1.dir\src\main.cpp.obj | lib1.lib || lib1.lib
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = lib1.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:C:\PROGRA~1\MICROS~4\2022\COMMUN~1\VC\Tools\MSVC\1443~1.348\ATLMFC\lib\x86   -LIBPATH:C:\PROGRA~1\MICROS~4\2022\COMMUN~1\VC\Tools\MSVC\1443~1.348\lib\x86   -LIBPATH:C:\PROGRA~2\WI3CF2~1\NETFXSDK\4.8\lib\um\x86   -LIBPATH:C:\PROGRA~2\WI3CF2~1\10\lib\100226~1.0\ucrt\x86   -LIBPATH:C:\PROGRA~2\WI3CF2~1\10\lib\100226~1.0\um\x86   -LIBPATH:C:\PROGRA~2\WI3CF2~1\10\Lib\100226~1.0\um\x64   -LIBPATH:C:\PROGRA~2\WI3CF2~1\10\Lib\100226~1.0\ucrt\x64
   OBJECT_DIR = CMakeFiles\Task1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\Task1.dir\
   TARGET_FILE = D:\Experiment\Task1\bin\Task1.exe
-  TARGET_IMPLIB = libTask1.dll.a
-  TARGET_PDB = Task1.exe.dbg
+  TARGET_IMPLIB = Task1.lib
+  TARGET_PDB = D:\Experiment\Task1\bin\Task1.pdb
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target lib1
@@ -83,40 +87,45 @@ build D$:/Experiment/Task1/bin/Task1.exe: CXX_EXECUTABLE_LINKER__Task1_Debug CMa
 
 build cmake_object_order_depends_target_lib1: phony || .
 
-build CMakeFiles/lib1.dir/lib/res.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/res.cpp || cmake_object_order_depends_target_lib1
-  DEP_FILE = CMakeFiles\lib1.dir\lib\res.cpp.obj.d
-  FLAGS = -g -std=gnu++11
-  INCLUDES = -ID:/Experiment/Task1/include
+build CMakeFiles\lib1.dir\lib\res.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:\Experiment\Task1\lib\res.cpp || cmake_object_order_depends_target_lib1
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -ID:\Experiment\Task1\include
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+  TARGET_COMPILE_PDB = CMakeFiles\lib1.dir\lib1.pdb
+  TARGET_PDB = lib1.pdb
 
-build CMakeFiles/lib1.dir/lib/Dijk.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/Dijk.cpp || cmake_object_order_depends_target_lib1
-  DEP_FILE = CMakeFiles\lib1.dir\lib\Dijk.cpp.obj.d
-  FLAGS = -g -std=gnu++11
-  INCLUDES = -ID:/Experiment/Task1/include
+build CMakeFiles\lib1.dir\lib\Dijk.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:\Experiment\Task1\lib\Dijk.cpp || cmake_object_order_depends_target_lib1
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -ID:\Experiment\Task1\include
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+  TARGET_COMPILE_PDB = CMakeFiles\lib1.dir\lib1.pdb
+  TARGET_PDB = lib1.pdb
 
-build CMakeFiles/lib1.dir/lib/PathS.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/PathS.cpp || cmake_object_order_depends_target_lib1
-  DEP_FILE = CMakeFiles\lib1.dir\lib\PathS.cpp.obj.d
-  FLAGS = -g -std=gnu++11
-  INCLUDES = -ID:/Experiment/Task1/include
+build CMakeFiles\lib1.dir\lib\PathS.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:\Experiment\Task1\lib\PathS.cpp || cmake_object_order_depends_target_lib1
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -ID:\Experiment\Task1\include
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+  TARGET_COMPILE_PDB = CMakeFiles\lib1.dir\lib1.pdb
+  TARGET_PDB = lib1.pdb
 
-build CMakeFiles/lib1.dir/lib/Console.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/Console.cpp || cmake_object_order_depends_target_lib1
-  DEP_FILE = CMakeFiles\lib1.dir\lib\Console.cpp.obj.d
-  FLAGS = -g -std=gnu++11
-  INCLUDES = -ID:/Experiment/Task1/include
+build CMakeFiles\lib1.dir\lib\Console.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:\Experiment\Task1\lib\Console.cpp || cmake_object_order_depends_target_lib1
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -ID:\Experiment\Task1\include
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+  TARGET_COMPILE_PDB = CMakeFiles\lib1.dir\lib1.pdb
+  TARGET_PDB = lib1.pdb
 
-build CMakeFiles/lib1.dir/lib/Color.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:/Experiment/Task1/lib/Color.cpp || cmake_object_order_depends_target_lib1
-  DEP_FILE = CMakeFiles\lib1.dir\lib\Color.cpp.obj.d
-  FLAGS = -g -std=gnu++11
-  INCLUDES = -ID:/Experiment/Task1/include
+build CMakeFiles\lib1.dir\lib\Color.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug D$:\Experiment\Task1\lib\Color.cpp || cmake_object_order_depends_target_lib1
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\ATLMFC\include" -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\cppwinrt" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -ID:\Experiment\Task1\include
   OBJECT_DIR = CMakeFiles\lib1.dir
   OBJECT_FILE_DIR = CMakeFiles\lib1.dir\lib
+  TARGET_COMPILE_PDB = CMakeFiles\lib1.dir\lib1.pdb
+  TARGET_PDB = lib1.pdb
 
 
 # =============================================================================
@@ -124,47 +133,49 @@ build CMakeFiles/lib1.dir/lib/Color.cpp.obj: CXX_COMPILER__lib1_unscanned_Debug 
 
 
 #############################################
-# Link the static library liblib1.a
+# Link the static library lib1.lib
 
-build liblib1.a: CXX_STATIC_LIBRARY_LINKER__lib1_Debug CMakeFiles/lib1.dir/lib/res.cpp.obj CMakeFiles/lib1.dir/lib/Dijk.cpp.obj CMakeFiles/lib1.dir/lib/PathS.cpp.obj CMakeFiles/lib1.dir/lib/Console.cpp.obj CMakeFiles/lib1.dir/lib/Color.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
+build lib1.lib: CXX_STATIC_LIBRARY_LINKER__lib1_Debug CMakeFiles\lib1.dir\lib\res.cpp.obj CMakeFiles\lib1.dir\lib\Dijk.cpp.obj CMakeFiles\lib1.dir\lib\PathS.cpp.obj CMakeFiles\lib1.dir\lib\Console.cpp.obj CMakeFiles\lib1.dir\lib\Color.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:X86
   OBJECT_DIR = CMakeFiles\lib1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = liblib1.a
-  TARGET_PDB = lib1.a.dbg
+  TARGET_COMPILE_PDB = CMakeFiles\lib1.dir\lib1.pdb
+  TARGET_FILE = lib1.lib
+  TARGET_PDB = lib1.pdb
 
 
 #############################################
 # Utility command for edit_cache
 
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Experiment\Task1\build && D:\mingw64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build edit_cache: phony CMakeFiles/edit_cache.util
+build edit_cache: phony CMakeFiles\edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Experiment\Task1\build && D:\mingw64\bin\cmake.exe --regenerate-during-build -SD:\Experiment\Task1 -BD:\Experiment\Task1\build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Target aliases.
 
-build Task1: phony D$:/Experiment/Task1/bin/Task1.exe
+build Task1: phony D$:\Experiment\Task1\bin\Task1.exe
 
-build Task1.exe: phony D$:/Experiment/Task1/bin/Task1.exe
+build Task1.exe: phony D$:\Experiment\Task1\bin\Task1.exe
 
-build lib1: phony liblib1.a
+build lib1: phony lib1.lib
 
 # =============================================================================
 # Folder targets.
@@ -174,7 +185,7 @@ build lib1: phony liblib1.a
 #############################################
 # Folder: D:/Experiment/Task1/build
 
-build all: phony D$:/Experiment/Task1/bin/Task1.exe liblib1.a
+build all: phony D$:\Experiment\Task1\bin\Task1.exe lib1.lib
 
 # =============================================================================
 # Built-in targets
@@ -183,14 +194,14 @@ build all: phony D$:/Experiment/Task1/bin/Task1.exe liblib1.a
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.31.5/CMakeCCompiler.cmake CMakeFiles/3.31.5/CMakeCXXCompiler.cmake CMakeFiles/3.31.5/CMakeRCCompiler.cmake CMakeFiles/3.31.5/CMakeSystem.cmake D$:/Experiment/Task1/CMakeLists.txt D$:/mingw64/share/cmake-3.31/Modules/CMakeCInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeCXXInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeGenericSystem.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeRCInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/GNU-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-windres.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake
+build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles\3.31.5\CMakeCCompiler.cmake CMakeFiles\3.31.5\CMakeCXXCompiler.cmake CMakeFiles\3.31.5\CMakeRCCompiler.cmake CMakeFiles\3.31.5\CMakeSystem.cmake D$:\Experiment\Task1\CMakeLists.txt D$:\mingw64\share\cmake-3.31\Modules\CMakeCInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeRCInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\MSVC-C.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\MSVC.cmake D$:\mingw64\share\cmake-3.31\Modules\Internal\CMakeCLinkerInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-C.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-MSVC-C.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build CMakeCache.txt CMakeFiles/3.31.5/CMakeCCompiler.cmake CMakeFiles/3.31.5/CMakeCXXCompiler.cmake CMakeFiles/3.31.5/CMakeRCCompiler.cmake CMakeFiles/3.31.5/CMakeSystem.cmake D$:/Experiment/Task1/CMakeLists.txt D$:/mingw64/share/cmake-3.31/Modules/CMakeCInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeCXXInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeGenericSystem.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeRCInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/GNU-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Compiler/GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-C.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows-windres.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/Windows.cmake D$:/mingw64/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake: phony
+build CMakeCache.txt CMakeFiles\3.31.5\CMakeCCompiler.cmake CMakeFiles\3.31.5\CMakeCXXCompiler.cmake CMakeFiles\3.31.5\CMakeRCCompiler.cmake CMakeFiles\3.31.5\CMakeSystem.cmake D$:\Experiment\Task1\CMakeLists.txt D$:\mingw64\share\cmake-3.31\Modules\CMakeCInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeRCInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\MSVC-C.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake D$:\mingw64\share\cmake-3.31\Modules\Compiler\MSVC.cmake D$:\mingw64\share\cmake-3.31\Modules\Internal\CMakeCLinkerInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-C.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-MSVC-C.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\Windows.cmake D$:\mingw64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake: phony
 
 
 #############################################

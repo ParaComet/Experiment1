@@ -1,4 +1,4 @@
-#include "Console.h"
+﻿#include "Console.h"
 #include "PathS.h"
 #include <cctype>
 #include <iostream>
@@ -11,6 +11,10 @@ using namespace TASK1;
 
 Console::Console(ResNet& graph) : graph_(graph) {
     //std::cout << "Graph processing console initialized.\n";
+}
+
+Console::~Console() {
+    
 }
 
 void Console::start() {
@@ -125,6 +129,7 @@ void Console::addEdge() {
         Name src, dst;
         Value weight;
         
+        //解析输入，若不合法则输出错误信息并继续下一次输入
         if (!(iss >> src >> dst >> weight)) {
             std::cout << Color::colorize("Error: Invalid input format. Please enter in the format: SourceNode DestinationNode Weight\n", Color::RED);
             continue;
@@ -149,6 +154,8 @@ void Console::addEdge() {
                       << Color::colorize(" does not exist.\n", Color::RED);
             continue;
         }*/
+
+        // 检测路径权值的合法性
         if (weight <= 0) {
             std::cout << Color::colorize("Error: Weight must be a positive number.\n", Color::RED);
             continue;
@@ -172,6 +179,11 @@ void Console::addEdge() {
                 PathS pathFinder(graph_);
                 pathFinder.searchPath();
                 pathFinder.printPathto(dst, src, weight, 1);
+            } else if (result == 3) {
+                 std::cout << Color::colorize("Error: Invalid input self-loop edge.\n", Color::RED);
+                 std::cout << Color::colorize(srcStr, Color::YELLOW)
+                          << Color::colorize(" -> ", Color::RED)
+                          << Color::colorize(dstStr, Color::YELLOW)<< "\n";
             }
         } catch (const std::exception& e) {
             std::cout << Color::colorize("Error: ", Color::RED)

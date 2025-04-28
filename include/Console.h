@@ -1,4 +1,4 @@
-#ifndef CONSOLE_H
+﻿#ifndef CONSOLE_H
 #define CONSOLE_H
 
 #include "res.h"
@@ -11,7 +11,7 @@ class Console {
 public:
     Console(ResNet& graph);
     void start();  // 启动命令行交互
-
+    ~Console();
 private:
     void printHelp() const;  // 打印帮助信息
     void processCommand(const std::string& cmd);  // 处理命令

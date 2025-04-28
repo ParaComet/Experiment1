@@ -6,6 +6,12 @@ set(CMAKE_CXX_STANDARD 11)
 
 # 设置
 
+if(MSVC)
+    # 从环境变量中读取路径
+    include_directories("$ENV{INCLUDE}")
+    link_directories("$ENV{LIB}")
+endif()
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 # 定义源文件和头文件目录

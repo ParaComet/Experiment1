@@ -1,4 +1,4 @@
-// include/Color.h
+﻿// include/Color.h
 #ifndef COLOR_H
 #define COLOR_H
 
@@ -8,6 +8,9 @@ namespace TASK1 {
 
 class Color {
 public:
+    Color() = delete;
+    ~Color() = delete;
+    
     // 前景色
     static const std::string BLACK;
     static const std::string RED;

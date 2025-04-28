@@ -1,6 +1,7 @@
-#ifndef RES_H
+﻿#ifndef RES_H
 #define RES_H
 
+#include <cstddef>
 #include <unordered_map>
 #include <vector>
 
@@ -37,7 +38,7 @@ namespace TASK1 {
 
         std::vector<Node> errnodes_;
         std::vector<Node> nodes_;
-        std::unordered_map<Name, int> nameToIndex_;
+        std::unordered_map<Name, size_t> nameToIndex_;
     };
 
     // 声明为inline函数，避免头文件中出现重复定义

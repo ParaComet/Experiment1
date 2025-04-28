@@ -1,23 +1,19 @@
+﻿#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 #include <iostream>
 #include "res.h"
 #include "Console.h"
 
 using namespace TASK1;
 
-void GetData(ResNet &res) {
-    Name from, to;
-    Value val;
-    std::cout << "Enter numbers (Ctrl+Z to end input): ";
-    while (std::cin >> from >> to >> val) {
-        res.addEdge(from, to, val);
-    }
-}
-
 int main() {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     ResNet graph;
-
+    //int* num = new int(10);   //检测内存是否泄露
+    //std::cout << "num: " << *num << std::endl;
     Console console(graph);
     console.start();
+    //_CrtDumpMemoryLeaks();
 /*  Heap minHeap;
     
     minHeap.insert('A', 5);
