@@ -18,8 +18,9 @@ Console::~Console() {
 }
 
 void Console::start() {
-    std::cout << Color::colorize("Graph Processing Console (type 'help' for commands)", Color::GREEN, Color::BOLD) << std::endl;
     
+    std::cout << Color::colorize("Graph Processing Console (type 'help' for commands)", Color::GREEN, Color::BOLD) << std::endl;
+    //启动命令行交互
     while (true) {
         std::cout << "> ";
         std::string input;
@@ -39,6 +40,7 @@ void Console::start() {
 }
 
 void Console::printHelp() const {
+    // 打印指令列表
     std::cout << Color::colorize("Available commands:", Color::GREEN, Color::BOLD) << "\n"
               << Color::colorize("  help", Color::YELLOW) << " - Show this help message\n"
               << Color::colorize("  addnode", Color::YELLOW) << " - Add a node to the graph\n"
@@ -56,7 +58,8 @@ void Console::printHelp() const {
 }
 
 void Console::processCommand(const std::string& cmd) {
-    using namespace TASK1;
+
+    //处理指令
     if (cmd == "help") {
         printHelp();
     } else if (cmd == "addnode") {
@@ -88,12 +91,13 @@ void Console::processCommand(const std::string& cmd) {
 }
 
 void Console::addNode() {
-    using namespace TASK1;
+
     std::cout << Color::colorize("Enter node name (single character): ", Color::CYAN);
     Name name;
     std::cin >> name;
     std::cin.ignore();
     
+    //将所有节点名称均以大写字母存储
     name = toupper(name);
     std::string nameStr(1, name);
     if (graph_.addNode(name) == -1) {
@@ -109,7 +113,7 @@ void Console::addNode() {
 
 
 void Console::addEdge() {
-    using namespace TASK1;
+
     std::cout << Color::colorize("Enter edges (source destination weight), one per line. Enter 'done' when finished:\n", Color::CYAN);
     
     while (true) {
@@ -195,6 +199,7 @@ void Console::addEdge() {
 
 
 void Console::findShortestPath() {
+
     std::cout << Color::colorize("Enter start node and end node (e.g. A B): ", Color::CYAN);
     Name start, end;
     std::cin >> start >> end;
@@ -223,6 +228,7 @@ void Console::findShortestPath() {
     Dijkstra dijkstra(graph_);
     dijkstra.shortestPath(start);
     
+    // 计算起点到终点的最短距离
     Value distance = dijkstra.getDistance(end);
     if (distance == INF) {
         std::cout << Color::colorize("No path exists from ", Color::RED)
@@ -242,6 +248,7 @@ void Console::findShortestPath() {
     
     std::cout << Color::colorize("Path: ", Color::CYAN);
     
+    // 调用getPath方法获取路径
     auto path = dijkstra.getPath(end);
     for (size_t i = 0; i < path.size(); ++i) {
         if (i != 0) std::cout << Color::colorize(" -> ", Color::BLUE);
@@ -300,7 +307,7 @@ void Console::findAllShortestPaths() {
                       << Color::colorize(std::to_string(distance), Color::MAGENTA)
                       << Color::colorize(" (", Color::CYAN);
 
-            
+            //调用getPath方法获取路径
             auto path = dijkstra.getPath(endNode.name);
             for (size_t i = 0; i < path.size(); ++i) {
                 if (i != 0) std::cout << Color::colorize(" -> ", Color::BLUE);
@@ -318,6 +325,7 @@ void Console::findAllShortestPaths() {
 }
 
 void Console::deleteNode() {
+    // 获取要删除的节点名称
     Name name;
     std::cout << Color::colorize("Enter node name to delete: ", Color::CYAN);
     std::cin >> name;
@@ -345,7 +353,7 @@ void Console::deleteNode() {
 }
 
 void Console::deleteEdge() {
-    // 验证节点是否存在
+    // 获取要添加的边的起点，终点和权值
     Name src, dst;
     std::cout << Color::colorize("Enter source and destination nodes of edge to delete (e.g. A B): ", Color::CYAN);
     std::cin >> src >> dst;
@@ -385,7 +393,7 @@ void Console::deleteEdge() {
 }
 
 void Console::printPath() {
-    // 验证节点是否存在
+    
     Name start, end;
     std::cout << Color::colorize("Enter start and end nodes of path (e.g. A B): ", Color::CYAN);
     std::cin >> start >> end;
@@ -402,7 +410,7 @@ void Console::printPath() {
 }
 
 void Console::printCicle() {
-    // 验证节点是否存在
+    
     PathS pathFinder(graph_);
     pathFinder.searchPath();
     bool flag = false;
