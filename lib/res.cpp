@@ -18,7 +18,7 @@ ResNet::~ResNet() {
 
 
 int ResNet::addNode(const Name& name) {
-    // 将节点加入图中，并返回节点的索引
+    // TODO: add node to resNet 
     int index = findNode(name);//查找节点在图中的索引
     
     //如果未找到节点，将其加入合法节点与非法节点列表
@@ -93,7 +93,7 @@ int ResNet::CircleCheck(const Name& src, const Name& dst) {
 
 int ResNet::addEdge(const Name& src, const Name& dst, Value value) {
     //检查目标节点到源节点是否存在路径
-    int ret = CircleCheck(dst, src);
+    int ret = CircleCheck(src, dst);
     if(ret) {
         //若环路检测存在环路，则不能添加边并更新非法边列表
         std::cout << Color::colorize("Cannot add edge, there is a circle in the resNet",Color::RED,Color::BOLD) << std::endl;
