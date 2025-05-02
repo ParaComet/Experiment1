@@ -9,8 +9,7 @@ namespace TASK1 {
 
     typedef int Value ;//int型变量
     typedef char Name ;
-   
-    
+
     class Node {
     public:
         Name name;

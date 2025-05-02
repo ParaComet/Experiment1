@@ -12,7 +12,8 @@ int main() {
     //int* num = new int(10);   //检测内存是否泄露
     //std::cout << "num: " << *num << std::endl;
     Console console(graph);
-    console.start();
+    //console.start();
+
     //_CrtDumpMemoryLeaks();
 /*  Heap minHeap;
     

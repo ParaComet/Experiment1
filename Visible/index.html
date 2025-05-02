@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Algorithm Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Graph Algorithm Visualization</h1>
+        <div id="graph-container"></div>
+        <div id="output-container">
+            <h2>Algorithm Output</h2>
+            <pre id="algorithm-output"></pre>
+        </div>
+        <div id="controls">
+            <button id="run-btn">Run Program</button>
+            <div id="input-area" style="margin-top: 20px; display: none;">
+                <input type="text" id="command-input" placeholder="输入指令...">
+                <button id="submit-btn">提交</button>
+            </div>
+        </div>
+        <div id="instructions" style="margin-top: 20px;">
+            <h2>使用说明</h2>
+            <ol>
+                <li>点击"Run Program"启动程序</li>
+                <li>在输入框中输入指令与程序交互</li>
+                <li>查看下方算法输出和图形可视化</li>
+            </ol>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

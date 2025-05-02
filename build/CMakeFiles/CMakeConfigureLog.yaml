@@ -17,13 +17,13 @@ events:
       - "CMakeLists.txt:3 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx86/x86/cl.exe 
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe 
       Build flags: 
       Id flags:  
       
       The output was:
       0
-      用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.43.34810 版
+      用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34810 版
       版权所有(C) Microsoft Corporation。保留所有权利。
       
       CMakeCCompilerId.c
@@ -63,13 +63,13 @@ events:
       - "CMakeLists.txt:3 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx86/x86/cl.exe 
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe 
       Build flags: 
       Id flags:  
       
       The output was:
       0
-      用于 x86 的 Microsoft (R) C/C++ 优化编译器 19.43.34810 版
+      用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.43.34810 版
       版权所有(C) Microsoft Corporation。保留所有权利。
       
       CMakeCXXCompilerId.cpp
@@ -109,21 +109,21 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-iui92d"
-      binary: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-iui92d"
+      source: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-0c1mxe"
+      binary: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-0c1mxe"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-iui92d'
+        Change Dir: 'D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-0c1mxe'
         
-        Run Build Command(s): D:/mingw64/bin/ninja.exe -v cmTC_b0c4a
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_b0c4a.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_b0c4a.dir\\ /FS -c D:\\mingw64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\mingw64\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1943 --intdir=CMakeFiles\\cmTC_b0c4a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo CMakeFiles\\cmTC_b0c4a.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_b0c4a.exe /implib:cmTC_b0c4a.lib /pdb:cmTC_b0c4a.pdb /version:0.0 /machine:X86  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): D:/mingw64/bin/ninja.exe -v cmTC_270ed
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_270ed.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_270ed.dir\\ /FS -c D:\\mingw64\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\mingw64\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1943 --intdir=CMakeFiles\\cmTC_270ed.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_270ed.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_270ed.exe /implib:cmTC_270ed.lib /pdb:cmTC_270ed.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -136,7 +136,7 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        linker tool for 'C': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx86/x86/link.exe
+        linker tool for 'C': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx64/x64/link.exe
         implicit libs: []
         implicit objs: []
         implicit dirs: []
@@ -151,7 +151,7 @@ events:
       - "D:/mingw64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:3 (project)"
     message: |
-      Running the C compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx86/x86/link.exe" "-v"
+      Running the C compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx64/x64/link.exe" "-v"
       Microsoft (R) Incremental Linker Version 14.43.34810.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
   -
@@ -163,22 +163,22 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-qre9dl"
-      binary: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-qre9dl"
+      source: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-2jhkzl"
+      binary: "D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-2jhkzl"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
       CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
     buildResult:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-qre9dl'
+        Change Dir: 'D:/Experiment/Task1/build/CMakeFiles/CMakeScratch/TryCompile-2jhkzl'
         
-        Run Build Command(s): D:/mingw64/bin/ninja.exe -v cmTC_e08ad
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_e08ad.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_e08ad.dir\\ /FS -c D:\\mingw64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\mingw64\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1943 --intdir=CMakeFiles\\cmTC_e08ad.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo CMakeFiles\\cmTC_e08ad.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_e08ad.exe /implib:cmTC_e08ad.lib /pdb:cmTC_e08ad.pdb /version:0.0 /machine:X86  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): D:/mingw64/bin/ninja.exe -v cmTC_40db1
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_40db1.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_40db1.dir\\ /FS -c D:\\mingw64\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && D:\\mingw64\\bin\\cmake.exe -E vs_link_exe --msvc-ver=1943 --intdir=CMakeFiles\\cmTC_40db1.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_40db1.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_40db1.exe /implib:cmTC_40db1.lib /pdb:cmTC_40db1.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -191,7 +191,7 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        linker tool for 'CXX': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx86/x86/link.exe
+        linker tool for 'CXX': C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx64/x64/link.exe
         implicit libs: []
         implicit objs: []
         implicit dirs: []
@@ -206,7 +206,7 @@ events:
       - "D:/mingw64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:3 (project)"
     message: |
-      Running the CXX compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx86/x86/link.exe" "-v"
+      Running the CXX compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1443~1.348/bin/Hostx64/x64/link.exe" "-v"
       Microsoft (R) Incremental Linker Version 14.43.34810.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
 ...

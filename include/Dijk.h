@@ -1,7 +1,8 @@
-#ifndef DIJK_H
+﻿#ifndef DIJK_H
 #define DIJK_H
 
 #include "res.h"
+#include <cstddef>
 #include <unordered_map>
 #include <vector>
 #include <limits>
@@ -43,22 +44,22 @@ namespace TASK1 {
 
     private:
     // private member variables
-        int size_;
+        size_t size_;
         
         //上浮操作
-        void heapifyUp(int index);
+        void heapifyUp(size_t index);
         
         //下沉操作
-        void heapifyDown(int index);
+        void heapifyDown(size_t index); 
         
         //得到左节点的索引
-        int getLeftChildIndex(int parentIndex) const;
+        int getLeftChildIndex(size_t parentIndex) const;
 
         //得到右节点的索引
-        int getRightChildIndex(int parentIndex) const;
+        int getRightChildIndex(size_t parentIndex) const;
 
         //得到父节点的索引
-        int getParentIndex(int childIndex) const;
+        int getParentIndex(size_t childIndex) const;
 
         //堆节点定义
         struct HeapNode {

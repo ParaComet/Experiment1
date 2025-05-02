@@ -1,4 +1,5 @@
-#include "Dijk.h"
+﻿#include "Dijk.h"
+#include <cstddef>
 #include <iostream>
 #include <algorithm>
 using namespace TASK1;
@@ -96,7 +97,7 @@ bool Heap::isEmpty() const {
 }
 
 //上浮操作
-void Heap::heapifyUp(int index) {
+void Heap::heapifyUp(size_t index) {
     //迭代递归避免内存开销过大
     while (index > 0) {
         int parentIndex = getParentIndex(index);
@@ -121,8 +122,8 @@ void Heap::heapifyUp(int index) {
 }    
 
 //下沉操作
-void Heap::heapifyDown(int index) {
-    int size = heap_.size();
+void Heap::heapifyDown(size_t index) {
+    size_t size = heap_.size();
     while (index < size) {
 
         //获取左右子节点的索引
@@ -166,15 +167,15 @@ void Heap::insert(const Name& name, const Value& dist) {
     heapifyUp(heap_.size() - 1);
 }
 
-int Heap::getLeftChildIndex(int parentIndex) const {
+int Heap::getLeftChildIndex(size_t parentIndex) const {
     return 2 * parentIndex + 1;
 }
 
-int Heap::getRightChildIndex(int parentIndex) const {
+int Heap::getRightChildIndex(size_t parentIndex) const {
     return 2 * parentIndex + 2;
 }
 
-int Heap::getParentIndex(int childIndex) const {
+int Heap::getParentIndex(size_t childIndex) const {
     return (childIndex - 1) / 2;
 }
 
