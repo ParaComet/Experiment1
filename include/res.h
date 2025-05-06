@@ -4,12 +4,16 @@
 #include <cstddef>
 #include <unordered_map>
 #include <vector>
+#include <string>
+#include <iostream>
+#include <queue>
 
 namespace TASK1 {
 
     typedef int Value ;//int型变量
     typedef char Name ;
-
+    int const MAX_NAME_LEN = 100;
+    
     class Node {
     public:
         Name name;
@@ -38,6 +42,8 @@ namespace TASK1 {
         std::vector<Node> errnodes_;
         std::vector<Node> nodes_;
         std::unordered_map<Name, size_t> nameToIndex_;
+
+        std::string exportToJson() const;
     };
 
     // 声明为inline函数，避免头文件中出现重复定义

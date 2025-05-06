@@ -23,7 +23,8 @@ set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 add_executable(Task1 ${SOURCE_DIR}/main.cpp)
 
 # 添加包含目录
-target_include_directories(Task1 PUBLIC ${INCLUDE_DIR} ${INCLUDE_DIR}/nlohmann)
+# target_include_directories(Task1 PUBLIC ${INCLUDE_DIR} ${INCLUDE_DIR}/nlohmann)
+target_include_directories(Task1 PUBLIC ${INCLUDE_DIR})
 
 # 添加库文件
 set(LIB1_SRC
@@ -36,7 +37,7 @@ set(LIB1_SRC
 add_library(lib1 ${LIB1_SRC})
 
 # 添加库的包含目录
-target_include_directories(lib1 PUBLIC ${INCLUDE_DIR} ${INCLUDE_DIR}/nlohmann)
+target_include_directories(lib1 PUBLIC ${INCLUDE_DIR})
 
 # 链接库
 target_link_libraries(Task1 lib1)

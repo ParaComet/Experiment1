@@ -3,20 +3,46 @@
 #include <iostream>
 #include "res.h"
 #include "Console.h"
+#include <fstream> // Required for file output
+#include <chrono>   // Required for std::chrono
+#include <iomanip>  // Required for std::put_time (though not strictly needed for epoch seconds)
+#include <string> // Required for std::string manipulation
 
 using namespace TASK1;
 
+void initialize_json_files() {
+    std::ofstream graph_file("../bin/graph_data.json");
+    if (graph_file.is_open()) {
+        graph_file << "{\n  \"nodes\": [],\n  \"edges\": []\n}";
+        graph_file.close();
+    } else {
+        std::cerr << "Unable to open graph_data.json for writing." << std::endl;
+    }
+
+    std::ofstream signal_file("../bin/update_signal.json");
+    if (signal_file.is_open()) {
+        signal_file << "{\"timestamp\": 0}";
+        signal_file.close();
+    } else {
+        std::cerr << "Unable to open update_signal.json for writing." << std::endl;
+    }
+}
+
 int main() {
+    initialize_json_files(); // Initialize JSON files at the start
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     ResNet graph;
     //int* num = new int(10);   //检测内存是否泄露
     //std::cout << "num: " << *num << std::endl;
     Console console(graph);
-    //console.start();
+    console.start();
 
-    //_CrtDumpMemoryLeaks();
+
+    _CrtDumpMemoryLeaks();
 /*  Heap minHeap;
     
+    python -m http.server 8000
+
     minHeap.insert('A', 5);
     minHeap.insert('B', 3);
     minHeap.insert('C', 7);

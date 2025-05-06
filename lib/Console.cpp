@@ -6,6 +6,8 @@
 #include <string>
 #include <algorithm>
 #include "Color.h"
+#include <fstream>
+#include <chrono>
 
 using namespace TASK1;
 
@@ -18,8 +20,9 @@ Console::~Console() {
 }
 
 void Console::start() {
-    std::cout << Color::colorize("Graph Processing Console (type 'help' for commands)", Color::GREEN, Color::BOLD) << std::endl;
     
+    std::cout << Color::colorize("Graph Processing Console (type 'help' for commands)", Color::GREEN, Color::BOLD) << std::endl;
+    //启动命令行交互
     while (true) {
         std::cout << "> ";
         std::string input;
@@ -39,6 +42,7 @@ void Console::start() {
 }
 
 void Console::printHelp() const {
+    // 打印指令列表
     std::cout << Color::colorize("Available commands:", Color::GREEN, Color::BOLD) << "\n"
               << Color::colorize("  help", Color::YELLOW) << " - Show this help message\n"
               << Color::colorize("  addnode", Color::YELLOW) << " - Add a node to the graph\n"
@@ -56,13 +60,18 @@ void Console::printHelp() const {
 }
 
 void Console::processCommand(const std::string& cmd) {
-    using namespace TASK1;
+
+    //处理指令
+    bool Updated = false;
+
     if (cmd == "help") {
         printHelp();
     } else if (cmd == "addnode") {
         addNode();
+        Updated = true;
     } else if (cmd == "addedge") {
         addEdge();
+        Updated = true;
     } else if (cmd == "shortest") {
         findShortestPath();
     } else if (cmd == "dijk") {
@@ -74,8 +83,10 @@ void Console::processCommand(const std::string& cmd) {
         printGraph();
     } else if (cmd == "dlnode") {
         deleteNode();
+        Updated = true;
     } else if (cmd == "dledge") {
         deleteEdge();
+        Updated = true;
     } else if (cmd == "printpath") {
         printPath();
     } else if (cmd == "printcycle") {
@@ -85,31 +96,55 @@ void Console::processCommand(const std::string& cmd) {
     } else {
         std::cout << Color::colorize("Unknown command. Type 'help' for available commands.", Color::RED) << "\n";
     }
+
+    if (Updated) {
+        Visualization();
+        Updated = false;
+    }
 }
 
 void Console::addNode() {
-    using namespace TASK1;
+
     std::cout << Color::colorize("Enter node name (single character): ", Color::CYAN);
-    Name name;
-    std::cin >> name;
-    std::cin.ignore();
-    
-    name = toupper(name);
-    std::string nameStr(1, name);
-    if (graph_.addNode(name) == -1) {
-        std::cout << Color::colorize("Node ", Color::RED) 
-                  << Color::colorize(nameStr, Color::YELLOW) 
-                  << Color::colorize(" already exists.", Color::RED) << "\n";
-    } else {
-        std::cout << Color::colorize("Node ", Color::GREEN) 
-                  << Color::colorize(nameStr, Color::YELLOW) 
-                  << Color::colorize(" added successfully.", Color::GREEN) << "\n";
+    while (true) {
+        std::cout << Color::colorize("Node> ", Color::BLUE);
+        Name name;
+        std::string input;
+        std::getline(std::cin, input);
+
+        if (input == "done" || input == "exit") {
+            break;
+        }
+
+        if (input.empty()) continue;
+
+        std::istringstream iss(input);
+        if (!(iss >> name)) {
+            std::cout << Color::colorize("Error: Invalid input format. Please enter a single character.\n", Color::RED);
+            continue;
+        }
+        
+        //将所有节点名称均以大写字母存储
+        name = toupper(name);
+
+        std::string nameStr(1, name);
+
+        if (graph_.addNode(name) == -1) {
+            std::cout << Color::colorize("Node ", Color::RED) 
+                      << Color::colorize(nameStr, Color::YELLOW) 
+                      << Color::colorize(" already exists.", Color::RED) << "\n";
+        } else {
+            std::cout << Color::colorize("Node ", Color::GREEN) 
+                    << Color::colorize(nameStr, Color::YELLOW) 
+                    << Color::colorize(" added successfully.", Color::GREEN) << "\n";
+        } 
     }
+
 }
 
 
 void Console::addEdge() {
-    using namespace TASK1;
+
     std::cout << Color::colorize("Enter edges (source destination weight), one per line. Enter 'done' when finished:\n", Color::CYAN);
     
     while (true) {
@@ -437,4 +472,29 @@ void Console::printCicle() {
 
 void Console::printErrEdge() {
     graph_.printErrNodes();
+}
+
+void Console::Visualization() {
+    std::string jsonData = graph_.exportToJson();
+    std::ofstream outFile("graph_data.json");
+    if (outFile.is_open()) {
+        outFile << jsonData;
+        outFile.close();
+        std::cout << "Graph data exported to bin/graph_data.json" << std::endl;
+
+        // Update update_signal.json
+        std::ofstream signalFile("update_signal.json");
+        if (signalFile.is_open()) {
+            auto now = std::chrono::system_clock::now();
+            auto epoch = now.time_since_epoch();
+            auto seconds = std::chrono::duration_cast<std::chrono::seconds>(epoch).count();
+            signalFile << "{\"timestamp\": " << seconds << "}";
+            signalFile.close();
+            std::cout << "Update signal written to bin/update_signal.json with timestamp: " << seconds << std::endl;
+        } else {
+            std::cerr << "Unable to open file to write update signal." << std::endl;
+        }
+    } else {
+        std::cerr << "Unable to open file to export graph data." << std::endl;
+    }
 }
