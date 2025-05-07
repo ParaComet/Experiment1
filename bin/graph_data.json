@@ -4,6 +4,7 @@
     {"id": "B", "label": "B"}
   ],
   "edges": [
-    {"from": "A", "to": "B", "label": "3", "isError": false}
+    {"from": "A", "to": "B", "label": "0", "isError": false},
+    {"from": "B", "to": "A", "label": "2", "isError": true}
   ]
 }

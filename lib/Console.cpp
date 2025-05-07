@@ -191,7 +191,7 @@ void Console::addEdge() {
         }*/
 
         // 检测路径权值的合法性
-        if (weight <= 0) {
+        if (weight < 0) {
             std::cout << Color::colorize("Error: Weight must be a positive number.\n", Color::RED);
             continue;
         }

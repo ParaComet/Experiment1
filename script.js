@@ -6,41 +6,75 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const options = {
         layout: {
-            hierarchical: false // You can try true for hierarchical layout
+            hierarchical: false,
+            improvedLayout: true // Added for potentially better layout
         },
         edges: {
             arrows: {
-                to: { enabled: true, scaleFactor: 1 }
+                to: { enabled: true, scaleFactor: 0.7, type: 'arrow' }
             },
-            labelHighlightBold: true,
+            color: {
+                color: '#78909C', // Material Design Grey
+                highlight: '#0288D1', // Material Design Light Blue
+                hover: '#0288D1', // Material Design Light Blue
+                inherit: 'from',
+                opacity: 1.0
+            },
             font: {
-                size: 12
-            }
+                size: 12,
+                color: '#455A64', // Darker Grey for text
+                face: 'Roboto, Arial, sans-serif',
+                strokeWidth: 0, // No stroke for cleaner look
+                strokeColor: '#ffffff'
+            },
+            smooth: {
+                enabled: true,
+                type: "cubicBezier", // Smoother curves
+                roundness: 0.7
+            },
+            width: 1.5
         },
         nodes: {
-            font: {
-                size: 16,
-                face: 'Tahoma'
+            shape: 'dot',
+            size: 18, // Slightly larger nodes
+            borderWidth: 2,
+            color: {
+                border: '#0D47A1', // Material Design Primary Blue
+                background: '#BBDEFB', // Material Design Light Blue
+                highlight: {
+                    border: '#0D47A1',
+                    background: '#E3F2FD' // Lighter shade for highlight
+                },
+                hover: {
+                    border: '#0D47A1',
+                    background: '#E3F2FD'
+                }
             },
-            shape: 'ellipse' // Other shapes: box, circle, database, text, diamond, dot, star, triangle, triangleDown, hexagon, square
+            font: {
+                size: 14,
+                color: '#37474F', // Material Design Text Color
+                face: 'Roboto, Arial, sans-serif'
+            }
         },
         interaction: {
-            hover: true, // Enable hover interactions
-            tooltipDelay: 200
+            hover: true,
+            tooltipDelay: 200,
+            navigationButtons: false, // Disable built-in navigation buttons
+            keyboard: true // Enables keyboard navigation
         },
         physics:{
-            enabled: true, // Enable physics for a more dynamic layout
+            enabled: true,
             barnesHut: {
-                gravitationalConstant: -2000,
-                centralGravity: 0.3,
-                springLength: 95,
-                springConstant: 0.04,
+                gravitationalConstant: -3000, // Slightly increased for more spread
+                centralGravity: 0.25,
+                springLength: 100,
+                springConstant: 0.05,
                 damping: 0.09,
-                avoidOverlap: 0.1
+                avoidOverlap: 0.15 // Increased to prevent overlap more
             },
-            solver: 'barnesHut', // Other solvers: repulsion, hierarchicalRepulsion
+            solver: 'barnesHut',
             stabilization: {
-                iterations: 1000 // Increase for more stable layout at start
+                iterations: 1500 // Increased for better initial stability
             }
         }
     };
@@ -165,4 +199,69 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start checking for updates
     checkForUpdates();
+
+    // 绑定控件功能
+    document.querySelector('.vis-zoomIn').addEventListener('click', () => {
+        network.moveTo({
+            scale: network.getScale() * 1.2,
+            animation: true
+        });
+    });
+
+    document.querySelector('.vis-zoomOut').addEventListener('click', () => {
+        network.moveTo({
+            scale: network.getScale() * 0.8,
+            animation: true
+        });
+    });
+
+    document.querySelector('.vis-zoomExtends').addEventListener('click', () => {
+        network.fit({
+            animation: true
+        });
+    });
+
+    document.querySelector('.vis-up').addEventListener('click', () => {
+        const viewPosition = network.getViewPosition();
+        network.moveTo({
+            position: {
+                x: viewPosition.x,
+                y: viewPosition.y - 100
+            },
+            animation: true
+        });
+    });
+
+    document.querySelector('.vis-down').addEventListener('click', () => {
+        const viewPosition = network.getViewPosition();
+        network.moveTo({
+            position: {
+                x: viewPosition.x,
+                y: viewPosition.y + 100
+            },
+            animation: true
+        });
+    });
+
+    document.querySelector('.vis-left').addEventListener('click', () => {
+        const viewPosition = network.getViewPosition();
+        network.moveTo({
+            position: {
+                x: viewPosition.x - 100,
+                y: viewPosition.y
+            },
+            animation: true
+        });
+    });
+
+    document.querySelector('.vis-right').addEventListener('click', () => {
+        const viewPosition = network.getViewPosition();
+        network.moveTo({
+            position: {
+                x: viewPosition.x + 100,
+                y: viewPosition.y
+            },
+            animation: true
+        });
+    });
 });

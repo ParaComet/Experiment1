@@ -38,7 +38,7 @@ int main() {
     console.start();
 
 
-    _CrtDumpMemoryLeaks();
+    //_CrtDumpMemoryLeaks();
 /*  Heap minHeap;
     
     python -m http.server 8000
