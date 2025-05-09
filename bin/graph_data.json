@@ -1,10 +1,6 @@
 {
   "nodes": [
-    {"id": "A", "label": "A"},
-    {"id": "B", "label": "B"}
   ],
   "edges": [
-    {"from": "A", "to": "B", "label": "0", "isError": false},
-    {"from": "B", "to": "A", "label": "2", "isError": true}
   ]
 }

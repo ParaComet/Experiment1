@@ -13,6 +13,8 @@ public:
     void start();  // 启动命令行交互
     ~Console();
 
+    void clear();  // 清屏
+    void clearmap();
     void printHelp() const;  // 打印帮助信息
     void processCommand(const std::string& cmd);  // 处理命令
     void addNode();  // 添加节点

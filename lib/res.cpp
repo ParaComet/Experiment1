@@ -148,7 +148,7 @@ void ResNet::printGraph() const {
     for (const auto& node : nodes_) {
         // 打印节点名称
         std::cout << Color::colorize("Node: ", Color::CYAN) 
-                  << Color::colorize(std::string(1, node.name), Color::YELLOW, Color::BOLD) 
+                  << Color::colorize(node.name, Color::YELLOW, Color::BOLD) 
                   << std::endl;
         
         // 打印边
@@ -157,7 +157,7 @@ void ResNet::printGraph() const {
         } else {
             for (const auto& edge : node.edges) {
                 std::cout << "    " 
-                          << Color::colorize(std::string(1, edge.first), Color::BLUE)
+                          << Color::colorize(edge.first, Color::BLUE)
                           << " " 
                           << Color::colorize(std::to_string(edge.second), Color::MAGENTA)
                           << std::endl;
@@ -374,7 +374,7 @@ int ResNet::printErrNodes() const {
     for (const auto& node : errnodes_) {
         // 打印节点名称
         std::cout << Color::colorize("Node: ", Color::CYAN) 
-                  << Color::colorize(std::string(1, node.name), Color::YELLOW, Color::BOLD) 
+                  << Color::colorize(node.name, Color::YELLOW, Color::BOLD) 
                   << std::endl;
         
         // 打印错误边
@@ -383,7 +383,7 @@ int ResNet::printErrNodes() const {
         } else {
             for (const auto& edge : node.edges) {
                 std::cout << "    " 
-                          << Color::colorize(std::string(1, edge.first), Color::RED)
+                          << Color::colorize(edge.first, Color::RED)
                           << " " 
                           << Color::colorize(std::to_string(edge.second), Color::MAGENTA)
                           << std::endl;
@@ -392,4 +392,12 @@ int ResNet::printErrNodes() const {
         std::cout << std::endl;
     }
     return 0;
+}
+
+void ResNet::clear() {
+    // 清空图
+    
+    nodes_.clear();
+    errnodes_.clear();
+    nameToIndex_.clear();
 }

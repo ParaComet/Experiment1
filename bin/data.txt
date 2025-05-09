@@ -1,0 +1,35 @@
+d a 2
+a b 1
+a c 4
+a e 3
+a f 6
+a g 1
+a h 5
+a i 2
+a j 3
+a k 4
+a l 5
+a m 6
+b d 5
+c d 7
+e d 6
+f d 5
+g d 4
+h d 3
+i d 2
+j d 1
+k d 2
+l d 3
+m d 4
+a b 100
+a c 1
+b d 1
+c d 100
+d e 1
+e f 1
+f e 2
+a d 200
+b c 1
+d b 1
+
+/

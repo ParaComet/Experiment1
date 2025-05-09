@@ -1,7 +1,8 @@
 ﻿#ifndef RES_H
 #define RES_H
 
-#include <cstddef>
+
+//#include <cstddef>
 #include <unordered_map>
 #include <vector>
 #include <string>
@@ -10,9 +11,8 @@
 
 namespace TASK1 {
 
-    typedef int Value ;//int型变量
-    typedef char Name ;
-    int const MAX_NAME_LEN = 100;
+    using Value = double;// 定义Value类型变量
+    using Name = std::string;// 定义Name类型变量
     
     class Node {
     public:
@@ -36,6 +36,8 @@ namespace TASK1 {
         void printGraph() const;
         int printErrNodes() const;
         int findNode(const Name& name) const;
+
+        void clear();
 
         const std::vector<std::pair<Name, Value>>& getEdges(const Name& node) const;
 

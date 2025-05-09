@@ -1,37 +1,37 @@
 [
 {
   "directory": "D:/Experiment/Task1/build",
-  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\cppwinrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um\" -ID:\\Experiment\\Task1\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\Task1.dir\\src\\main.cpp.obj /FdCMakeFiles\\Task1.dir\\ /FS -c D:\\Experiment\\Task1\\src\\main.cpp",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++17 -o CMakeFiles\\Task1.dir\\src\\main.cpp.obj -c D:\\Experiment\\Task1\\src\\main.cpp",
   "file": "D:\\Experiment\\Task1\\src\\main.cpp",
   "output": "CMakeFiles\\Task1.dir\\src\\main.cpp.obj"
 },
 {
   "directory": "D:/Experiment/Task1/build",
-  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\cppwinrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um\" -ID:\\Experiment\\Task1\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\lib1.dir\\lib\\res.cpp.obj /FdCMakeFiles\\lib1.dir\\lib1.pdb /FS -c D:\\Experiment\\Task1\\lib\\res.cpp",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++17 -o CMakeFiles\\lib1.dir\\lib\\res.cpp.obj -c D:\\Experiment\\Task1\\lib\\res.cpp",
   "file": "D:\\Experiment\\Task1\\lib\\res.cpp",
   "output": "CMakeFiles\\lib1.dir\\lib\\res.cpp.obj"
 },
 {
   "directory": "D:/Experiment/Task1/build",
-  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\cppwinrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um\" -ID:\\Experiment\\Task1\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\lib1.dir\\lib\\Dijk.cpp.obj /FdCMakeFiles\\lib1.dir\\lib1.pdb /FS -c D:\\Experiment\\Task1\\lib\\Dijk.cpp",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++17 -o CMakeFiles\\lib1.dir\\lib\\Dijk.cpp.obj -c D:\\Experiment\\Task1\\lib\\Dijk.cpp",
   "file": "D:\\Experiment\\Task1\\lib\\Dijk.cpp",
   "output": "CMakeFiles\\lib1.dir\\lib\\Dijk.cpp.obj"
 },
 {
   "directory": "D:/Experiment/Task1/build",
-  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\cppwinrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um\" -ID:\\Experiment\\Task1\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\lib1.dir\\lib\\PathS.cpp.obj /FdCMakeFiles\\lib1.dir\\lib1.pdb /FS -c D:\\Experiment\\Task1\\lib\\PathS.cpp",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++17 -o CMakeFiles\\lib1.dir\\lib\\PathS.cpp.obj -c D:\\Experiment\\Task1\\lib\\PathS.cpp",
   "file": "D:\\Experiment\\Task1\\lib\\PathS.cpp",
   "output": "CMakeFiles\\lib1.dir\\lib\\PathS.cpp.obj"
 },
 {
   "directory": "D:/Experiment/Task1/build",
-  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\cppwinrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um\" -ID:\\Experiment\\Task1\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\lib1.dir\\lib\\Console.cpp.obj /FdCMakeFiles\\lib1.dir\\lib1.pdb /FS -c D:\\Experiment\\Task1\\lib\\Console.cpp",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++17 -o CMakeFiles\\lib1.dir\\lib\\Console.cpp.obj -c D:\\Experiment\\Task1\\lib\\Console.cpp",
   "file": "D:\\Experiment\\Task1\\lib\\Console.cpp",
   "output": "CMakeFiles\\lib1.dir\\lib\\Console.cpp.obj"
 },
 {
   "directory": "D:/Experiment/Task1/build",
-  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include\" -I\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\um\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\winrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\cppwinrt\" -I\"C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um\" -ID:\\Experiment\\Task1\\include /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\lib1.dir\\lib\\Color.cpp.obj /FdCMakeFiles\\lib1.dir\\lib1.pdb /FS -c D:\\Experiment\\Task1\\lib\\Color.cpp",
+  "command": "D:\\mingw64\\bin\\g++.exe -ID:/Experiment/Task1/include -g -std=gnu++17 -o CMakeFiles\\lib1.dir\\lib\\Color.cpp.obj -c D:\\Experiment\\Task1\\lib\\Color.cpp",
   "file": "D:\\Experiment\\Task1\\lib\\Color.cpp",
   "output": "CMakeFiles\\lib1.dir\\lib\\Color.cpp.obj"
 }

@@ -86,9 +86,8 @@ void PathS::printPath(const std::vector<Name>& path, Value weight, int type) {
                 std::cout << Color::colorize(" -> ", Color::BLUE);
             }
         }
-        char a = path[i];
-        std::string str(1, a);
-        std::cout << Color::colorize(str, Color::YELLOW);
+ 
+        std::cout << Color::colorize(path[i], Color::YELLOW);
     }
     // 打印路径权重
     if (type == 0) {
@@ -103,10 +102,9 @@ void PathS::printPath(const std::vector<Name>& path, Value weight, int type) {
 void PathS::printAllPaths() {
     // 打印所有路径
     for (const auto& node : Node_) {
-        char a = node.name;
-        std::string str(1, a);
+    
         std::cout << Color::colorize("Paths starting from ", Color::GREEN) 
-                  << Color::colorize(str, Color::YELLOW, Color::BOLD) 
+                  << Color::colorize(node.name, Color::YELLOW, Color::BOLD) 
                   << Color::colorize(":", Color::GREEN) << std::endl;
         if (node.paths.empty()) {
             std::cout << Color::colorize("No path found", Color::RED) << std::endl << std::endl;
@@ -144,7 +142,7 @@ void PathS::printPathto(const Name& from, const Name& to, Value weight, int type
         }
     }
     std::cout << Color::colorize("Node ",Color::RED) 
-            << Color::colorize(std::to_string(from), Color::YELLOW) 
+            << Color::colorize(from, Color::YELLOW) 
             << Color::colorize(" not found", Color::RED) << std::endl;
     return;
 }
