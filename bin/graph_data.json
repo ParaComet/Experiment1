@@ -1,6 +1,23 @@
 {
   "nodes": [
+    {"id": "A", "label": "A"},
+    {"id": "B", "label": "B"},
+    {"id": "C", "label": "C"},
+    {"id": "D", "label": "D"},
+    {"id": "E", "label": "E"},
+    {"id": "F", "label": "F"},
+    {"id": "G", "label": "G"}
   ],
   "edges": [
+    {"from": "A", "to": "B", "label": "0.003", "isError": false},
+    {"from": "A", "to": "C", "label": "0.002", "isError": false},
+    {"from": "B", "to": "D", "label": "0.001", "isError": false},
+    {"from": "B", "to": "G", "label": "0.01", "isError": false},
+    {"from": "C", "to": "D", "label": "0.002", "isError": false},
+    {"from": "C", "to": "F", "label": "0.001", "isError": false},
+    {"from": "D", "to": "E", "label": "0.005", "isError": false},
+    {"from": "E", "to": "F", "label": "0.001", "isError": false},
+    {"from": "F", "to": "G", "label": "0.002", "isError": false},
+    {"from": "E", "to": "B", "label": "0.002", "isError": true}
   ]
 }
